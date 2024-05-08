@@ -14,8 +14,8 @@ app.use('/static',express.static(__dirname + '/static'))
 
 app.use('/', router);
 
-// const userRouter = require('./routes/user')
-// app.use('/user',userRouter);
+const userRouter = require('./routes/user')
+app.use('/user',userRouter);
 
 sequelize
   .sync({force:false})
