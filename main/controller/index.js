@@ -1,3 +1,3 @@
 exports.main = (req,res) =>{
-  res.render('index');
+  res.render('month');
 }
