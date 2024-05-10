@@ -10,8 +10,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.use('/static',express.static(__dirname + '/static'))
-indexRouter = require('./routes/index');
-app.use('/', indexRouter);
+todoRouter = require('./routes/todo');
+app.use('/', todoRouter);
 
 const userRouter = require('./routes/user')
 app.use('/user',userRouter);
