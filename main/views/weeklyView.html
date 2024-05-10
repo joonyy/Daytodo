@@ -32,6 +32,11 @@
             border: 1px solid #ddd;
             padding: 10px;
             overflow-y: auto; /* 필요할 때만 스크롤 표시 */
+            display: none; /* 일단 모든 요일을 숨김 */
+        }
+
+        .day.active {
+            display: block; /* 선택된 요일만 표시 */
         }
 
         .day h2 {
@@ -55,7 +60,7 @@
     </header>
     <main>
         <!-- 월요일 -->
-        <div class="day">
+        <div class="day" id="monday">
             <h2>Monday</h2>
             <ul class="daily-tasks">
                 <!-- 월요일 할 일 작성 -->
@@ -65,7 +70,7 @@
             </ul>
         </div>
         <!-- 화요일 -->
-        <div class="day">
+        <div class="day" id="tuesday">
             <h2>Tuesday</h2>
             <ul class="daily-tasks">
                 <!-- 화요일 할 일 작성 -->
@@ -75,7 +80,7 @@
             </ul>
         </div>
         <!-- 수요일 -->
-        <div class="day">
+        <div class="day" id="wednesday">
             <h2>Wednesday</h2>
             <ul class="daily-tasks">
                 <!-- 수요일 할 일 작성 -->
@@ -85,7 +90,7 @@
             </ul>
         </div>
         <!-- 목요일 -->
-        <div class="day">
+        <div class="day" id="thursday">
             <h2>Thursday</h2>
             <ul class="daily-tasks">
                 <!-- 목요일 할 일 작성 -->
@@ -95,7 +100,7 @@
             </ul>
         </div>
         <!-- 금요일 -->
-        <div class="day">
+        <div class="day" id="friday">
             <h2>Friday</h2>
             <ul class="daily-tasks">
                 <!-- 금요일 할 일 작성 -->
@@ -105,7 +110,7 @@
             </ul>
         </div>
         <!-- 토요일 -->
-        <div class="day">
+        <div class="day" id="saturday">
             <h2>Saturday</h2>
             <ul class="daily-tasks">
                 <!-- 토요일 할 일 작성 -->
@@ -115,7 +120,7 @@
             </ul>
         </div>
         <!-- 일요일 -->
-        <div class="day">
+        <div class="day" id="sunday">
             <h2>Sunday</h2>
             <ul class="daily-tasks">
                 <!-- 일요일 할 일 작성 -->
@@ -131,6 +136,21 @@
     <script>
         // JavaScript 코드
         // 이곳에 JavaScript 코드를 작성하세요
+        // 요일 선택 시 해당 요일의 내용을 보여주는 함수
+        function showDay(day) {
+            // 모든 요일을 숨김
+            var days = document.querySelectorAll('.day');
+            days.forEach(function(dayElement) {
+                dayElement.classList.remove('active');
+            });
+            
+            // 선택한 요일을 표시
+            var selectedDay = document.getElementById(day);
+            selectedDay.classList.add('active');
+        }
+
+        // 예시: 월요일 선택 시
+        showDay('monday');
     </script>
 </body>
 </html>
