@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup</title>
+    <link rel="stylesheet" href="../../static/styles/popup.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <a href="#" class="login">Login</a> <!-- Change login link to # -->
+    </div>
+    <!-- Login Popup -->
+    <div class="login-popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeLoginPopup()">&times;</span> <!-- Moved close button inside popup content -->
+            <div class="login-container">
+                <h2>D2D</h2>
+                <form>
+                    <input type="text" placeholder="아이디 :" name="username" required>
+                    <input type="password" placeholder="비밀번호 :" name="password" required>
+                    <input type="submit" value="Login" class="login-detail">
+                </form>
+                <div class="social-login">
+                    <button onclick="kakaoLogin()" class="kakao-detail">Login with Kakao</button>
+                </div>
+                <div class="signup-link">
+                    <p>아직 회원이 아니신가요? <a href="#" class="signup-link">회원가입</a> <br>또는 카카오톡으로가입하기</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Signup Popup -->
+    <div class="signup-popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closeSignupPopup()">&times;</span>
+            <h2>회원가입</h2>
+
+            <form onsubmit="return validateForm()">
+                <label for="username">아이디:</label>
+                <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]{4,12}" title="영어와 숫자만 입력 가능하며, 4글자 이상 12글자 이하로 입력하세요." required>
+                
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" pattern=".{6,}" title="6자 이상 입력하세요." required>
+                
+                <label for="nickname">닉네임:</label>
+                <input type="text" id="nickname" name="nickname" pattern=".{2,8}" title="2글자 이상 8글자 이하로 입력하세요." required>
+                
+                <input type="submit" value="가입하기">
+            </form>
+        </div>
+    </div>
+
+    <script src="../../static/js/popup.js"></script>
+</body>
+</html>

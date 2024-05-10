@@ -1,0 +1,120 @@
+/* styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: blue;
+  color: white;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
+#menuToggle {
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+  color: tomato;
+}
+
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0; /* 숨깁니다. */
+  z-index: 2; /* 햄버거 버튼 위에 위치시킵니다. */
+  -webkit-touch-callout: none;
+}
+
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: white; /* Change background color to white */
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+/* 햄버거 버튼을 누르면 모양이 변경됩니다. */
+
+#menuToggle input[type="checkbox"] {
+  width: 7%; /* Set width to 100% */
+  position: absolute; /* Position the checkbox input absolutely */
+  top: 0; /* Align to the top of the container */
+  left: 0; /* Align to the left of the container */
+  opacity: 0; /* Hide the checkbox input */
+  cursor: pointer; /* Change cursor to pointer */
+  z-index: 2; /* Ensure it's above other elements */
+}
+
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: white; /* Change background color to white */
+}
+
+/* 가운데 줄은 숨깁니다. */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/* 마지막 줄은 반대 방향으로 이동합니다. */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/* 화면 왼쪽 상단에 고정됩니다. */
+#menu {
+  position: absolute;
+  width: 200px;
+  height: 600px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  background: #000;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/* 왼쪽에서 슬라이드로 나타납니다. */
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
