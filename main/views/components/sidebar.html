@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<% include ../components/header.ejs >
+
+  <style>
+    .menu_list{
+      color:white;
+      font-size: 50px;
+      text-align: right;
+      margin-right: 20px;
+      z-index: 102;
+    }
+    a{
+      text-decoration: none;
+      color:inherit;
+    }
+    .sidebar{
+      background-color: black;
+      width:400px;
+      height: 100vh;
+      margin-left : 0;
+      z-index : 100;
+    }
+    .menu_icon{
+      margin : 30px 0 0 10px;
+      z-index: 101;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="../../static/img/menu_white.png" alt="" class="menu_icon">
+    <p class="menu_list"><a href="#">Create Todo</a></p>
+    <p class="menu_list"><a href="#">View Todo</a></p>
+    <p class="menu_list"><a href="#">my page</a></p>
+  </div>
+</body>
+</html>
