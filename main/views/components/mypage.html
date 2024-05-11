@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <style>
+        /* 공통 CSS 스타일링 */
+        .popup {
+            display: none; /* 초기에는 팝업 숨김 */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+        }
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            width: 300px; /* 팝업의 너비 지정 */
+        }
+        .popup ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .popup ul li {
+            margin-bottom: 10px;
+        }
+        .popup ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .popup ul li a:hover {
+            color: #0066cc;
+        }
+
+        /* 추가된 CSS */
+        .notice-box {
+            border-radius: 8px;
+            -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            padding: 15%;
+            margin-top: 20px;
+            color: black;
+        }
+        .notice-text {
+            margin: 0;
+            font-size: auto;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" id="mypageLink">My Page</a>
+    <div id="mypagePopup" class="popup">
+        <div class="popup-content">
+            <h2>My Page</h2>
+            <ul>
+                <li><a href="#" id="changePasswordLink">Change Password</a></li>
+                <li><a href="#" id="changeNicknameLink">Change Nickname</a></li>
+                <li><a href="#" id="withdrawLink">Withdraw</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="changePasswordPopup" class="popup">
+        <div class="popup-content">
+            <h2>Change Password</h2>
+            <form id="changePasswordForm">
+                <label for="currentPassword">Current Password:</label><br>
+                <input type="password" id="currentPassword" name="currentPassword"><br><br>
+                <label for="newPassword">New Password:</label><br>
+                <input type="password" id="newPassword" name="newPassword"><br><br>
+                <label for="confirmNewPassword">Confirm New Password:</label><br>
+                <input type="password" id="confirmNewPassword" name="confirmNewPassword"><br><br>
+                <button type="submit">Change</button>
+            </form>
+        </div>
+    </div>
+    <div id="changeNicknamePopup" class="popup">
+        <div class="popup-content">
+            <h2>Change Nickname</h2>
+            <form id="changeNicknameForm">
+                <label for="newNickname">New Nickname:</label><br>
+                <input type="text" id="newNickname" name="newNickname"><br><br>
+                <button type="submit">Change</button>
+            </form>
+        </div>
+    </div>
+    <div id="withdrawPopup" class="popup">
+        <div class="popup-content">
+            <h2>Withdraw</h2>
+            <form id="withdrawForm">
+                <div class="notice-box">
+                    <p class="notice-text">Are you sure you want to withdraw?</p>
+                    <button type="button" onclick="showConfirmation()" class="animated-button">Withdraw</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        // JavaScript 코드
+        const mypageLink = document.getElementById('mypageLink');
+        const mypagePopup = document.getElementById('mypagePopup');
+        const changePasswordLink = document.getElementById('changePasswordLink');
+        const changePasswordPopup = document.getElementById('changePasswordPopup');
+        const changeNicknameLink = document.getElementById('changeNicknameLink');
+        const changeNicknamePopup = document.getElementById('changeNicknamePopup');
+        const withdrawLink = document.getElementById('withdrawLink');
+        const withdrawPopup = document.getElementById('withdrawPopup');
+
+        let isMypageOpen = false; // mypage 팝업 상태를 나타내는 변수
+
+        mypageLink.addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+
+            if (!isMypageOpen) { // mypage 팝업이 열려있지 않은 경우
+                mypagePopup.style.display = 'block'; // mypage 팝업을 보이도록 변경
+                isMypageOpen = true; // mypage 팝업 상태 업데이트
+            } else { // mypage 팝업이 열려있는 경우
+                mypagePopup.style.display = 'none'; // mypage 팝업을 숨기도록 변경
+                isMypageOpen = false; // mypage 팝업 상태 업데이트
+            }
+        });
+
+        changePasswordLink.addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+            changePasswordPopup.style.display = 'block'; // 비밀번호 변경 팝업을 보이도록 변경
+        });
+
+        changeNicknameLink.addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+            changeNicknamePopup.style.display = 'block'; // 닉네임 변경 팝업을 보이도록 변경
+        });
+
+        withdrawLink.addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+            withdrawPopup.style.display = 'block'; // 탈퇴 팝업을 보이도록 변경
+        });
+
+        function showConfirmation() {
+            if (confirm("회원정보가 삭제되는걸 동의하시나요?")){
+                window.location.href = "#";
+            }
+        }
+    </script>
+</body>
+</html>
