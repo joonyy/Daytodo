@@ -1,5 +1,6 @@
-const {Event, Task} = require('../models');
+const {Event, Task, Todo} = require('../models');
 
+//month별로 보여준다!
 exports.month = (req,res) =>{
   res.render('monthlyView'/* , {data : result} */);
   //database에서 현재 달에 있는 일정을 각각 칸에 맞추어 제목을 달아줘야 함.
@@ -7,21 +8,42 @@ exports.month = (req,res) =>{
   //res.send()
 }
 
+//week 별로 보여준다!
 exports.week = (req,res)=>{
   res.render('weeklyView'/*, {data : result} */);
   //database에서 현재 주에 있는 일정을 각각 칸에 맞추어 제목을 뿌릴 것.
   //select * where end_date is in (이번주)
 }
 
+//일별로 보여준다!
 exports.date = (req,res)=>{
   res.render('dailyView'/*, {data : result} */);
   //database에서 현재 주에 있는 일정을 각각 칸에 맞추어 제목을 뿌릴 것.
   //select * where end_date is in (오늘 날짜)
 }
 
+//새로 만들 수 있도록 한다!
+exports.createTodo = (req,res) =>{
+  //데이터베이스에 새로 생성한다.
+  console.log('새로 만들었어~');
+}
+
 exports.showTodo = (req,res) =>{
-  //데이터베이스에서 찾는다. date가 포함되는 Task, Event를.
+  //투두 항목 자세히 보기.
   console.log('돌려줬어~')
 }
 
-exports
+exports.editTodo = (req,res) =>{
+  //todo id를 통해 task인지 event인지 분별하여, 수정할 데이터를 보여줘야 해요. form에 작성해둔 페이지를 
+  console.log('이걸 고칠거구나~');
+}
+
+exports.updateTodo = (req,res) =>{
+  //editTodo 이후 Todo를 업데이트해줍니다.
+  console.log('updateTodo');
+}
+
+exports.deleteTodo = (req,res) =>{
+  //editTodo 이후 Todo를 삭제해줍니다.
+  console.log('deleteTodo');
+}

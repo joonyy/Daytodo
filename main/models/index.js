@@ -12,12 +12,16 @@ const sequelize = new Sequelize(
 
 //만들어진 모델이 들어갈 자리.
 const UserModel = require('./User')(sequelize, Sequelize);
+const TodoModel = require('./Todo')(sequelize,Sequelize);
 const TaskModel = require('./Task')(sequelize, Sequelize);
 const EventModel = require('./Event')(sequelize, Sequelize);
 
 //모델간 관계 설정하기
 
+//users - 
+
 //db 항목에 추가하기
+db.Todo = TodoModel;
 db.Task = TaskModel;
 db.User = UserModel;
 db.Event = EventModel;
