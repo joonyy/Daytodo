@@ -1,6 +1,6 @@
 const express =require('express');
 const router = express.Router();
-const controller = require('../controller/Todo')
+const controller = require('../controller/Ctodo')
 
 //월간 뷰 보여주기+ 해당 월 투두 제목 리스트 가져오기
 router.get('/',controller.month);
