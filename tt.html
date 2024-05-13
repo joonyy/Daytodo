@@ -1,51 +1,156 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>비밀번호 변경</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly View - ToDo List</title>
+    <style>
+        /* CSS 스타일링 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            height: 100vh; /* 화면 전체 높이로 설정 */
+            overflow-y: hidden; /* 세로 스크롤 숨김 */
+        }
+
+        .day {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-y: auto; /* 필요할 때만 스크롤 표시 */
+            display: none; /* 일단 모든 요일을 숨김 */
+        }
+
+        .day.active {
+            display: block; /* 선택된 요일만 표시 */
+        }
+
+        .day h2 {
+            margin-top: 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <ul>
-    <li><a href="#" id="changePasswordLink">비밀번호 변경</a></li>
-  </ul>
+    <header>
+        <h1>Weekly View</h1>
+    </header>
+    <main>
+        <!-- 월요일 -->
+        <div class="day" id="monday">
+            <h2>Monday</h2>
+            <ul class="daily-tasks">
+                <!-- 월요일 할 일 작성 -->
+                <li>Task 1 for Monday</li>
+                <li>Task 2 for Monday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 화요일 -->
+        <div class="day" id="tuesday">
+            <h2>Tuesday</h2>
+            <ul class="daily-tasks">
+                <!-- 화요일 할 일 작성 -->
+                <li>Task 1 for Tuesday</li>
+                <li>Task 2 for Tuesday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 수요일 -->
+        <div class="day" id="wednesday">
+            <h2>Wednesday</h2>
+            <ul class="daily-tasks">
+                <!-- 수요일 할 일 작성 -->
+                <li>Task 1 for Wednesday</li>
+                <li>Task 2 for Wednesday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 목요일 -->
+        <div class="day" id="thursday">
+            <h2>Thursday</h2>
+            <ul class="daily-tasks">
+                <!-- 목요일 할 일 작성 -->
+                <li>Task 1 for Thursday</li>
+                <li>Task 2 for Thursday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 금요일 -->
+        <div class="day" id="friday">
+            <h2>Friday</h2>
+            <ul class="daily-tasks">
+                <!-- 금요일 할 일 작성 -->
+                <li>Task 1 for Friday</li>
+                <li>Task 2 for Friday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 토요일 -->
+        <div class="day" id="saturday">
+            <h2>Saturday</h2>
+            <ul class="daily-tasks">
+                <!-- 토요일 할 일 작성 -->
+                <li>Task 1 for Saturday</li>
+                <li>Task 2 for Saturday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+        <!-- 일요일 -->
+        <div class="day" id="sunday">
+            <h2>Sunday</h2>
+            <ul class="daily-tasks">
+                <!-- 일요일 할 일 작성 -->
+                <li>Task 1 for Sunday</li>
+                <li>Task 2 for Sunday</li>
+                <!-- 여기에 다른 할 일 추가 -->
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 ToDo List App</p>
+    </footer>
+    <script>
+        // JavaScript 코드
+        // 이곳에 JavaScript 코드를 작성하세요
+        // 요일 선택 시 해당 요일의 내용을 보여주는 함수
+        function showDay(day) {
+            // 모든 요일을 숨김
+            var days = document.querySelectorAll('.day');
+            days.forEach(function(dayElement) {
+                dayElement.classList.remove('active');
+            });
+            
+            // 선택한 요일을 표시
+            var selectedDay = document.getElementById(day);
+            selectedDay.classList.add('active');
+        }
 
-  <div id="changePasswordPopup" style="display: none;">
-    <h2>비밀번호 변경</h2>
-    <form id="changePasswordForm">
-      <label for="currentPassword">현재 비밀번호:</label><br>
-      <input type="password" id="currentPassword" name="currentPassword"><br><br>
-      <label for="newPassword">새 비밀번호:</label><br>
-      <input type="password" id="newPassword" name="newPassword"><br><br>
-      <label for="confirmNewPassword">새 비밀번호 확인:</label><br>
-      <input type="password" id="confirmNewPassword" name="confirmNewPassword"><br><br>
-      <input type="submit" value="변경">
-    </form>
-  </div>
-
-  <script>
-    document.getElementById("changePasswordLink").addEventListener("click", function(event) {
-  event.preventDefault();
-  document.getElementById("changePasswordPopup").style.display = "block";
-});
-
-document.getElementById("changePasswordForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  
-  var currentPassword = document.getElementById("currentPassword").value;
-  var newPassword = document.getElementById("newPassword").value;
-  var confirmNewPassword = document.getElementById("confirmNewPassword").value;
-
-  // 비밀번호 변경 로직을 여기에 구현합니다.
-  // 예를 들어, AJAX를 사용하여 서버로 비밀번호 변경 요청을 보낼 수 있습니다.
-  // 이 예제에서는 단순히 콘솔에 출력합니다.
-  console.log("현재 비밀번호:", currentPassword);
-  console.log("새 비밀번호:", newPassword);
-  console.log("새 비밀번호 확인:", confirmNewPassword);
-
-  // 팝업을 닫습니다.
-  document.getElementById("changePasswordPopup").style.display = "none";
-});
-  </script>
+        // 예시: 월요일 선택 시
+        showDay('monday');
+    </script>
 </body>
 </html>
