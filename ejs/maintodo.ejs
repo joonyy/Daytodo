@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일정 기록</title>
+  <link rel="stylesheet" href="../main/static/styles/mainTodo.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>D2D</h1>
+  <h2 id="currentDate"></h2>
+  <div id="scheduleList" class="schedule-list">
+    <!-- 여기에 일정이 표시됩니다 -->
+  </div>
+  <div class="add-schedule-button-container">
+    <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
+    <br>
+    <form id="addScheduleForm" class="hide">
+      <input type="text" id="eventName" class="formtext" placeholder="일정을 입력하세요">
+      <button type="submit">일정 추가</button>
+    </form>
+  </div>
+</div>
+
+<script src="../main/static/js/mainTodo.js" defer></script>
+</body>
+</html>

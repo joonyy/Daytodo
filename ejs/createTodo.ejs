@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="/main/static/styles/createTodo.css">
+  <script src="/main/static/js/createTodo.js"></script>
+</head>
+<body>
+  <!-- 진행률 바 -->
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <!-- 선택된 달의 달력 표시 -->
+  <div class="calendar">
+    <div class="calendar-header">
+      <button class="prev-month">&lt;</button>
+      <h2 class="month-year"></h2>
+      <button class="next-month">&gt;</button>
+    </div>
+    <table class="calendar-grid">
+      <thead>
+        <tr>
+          <th>일</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th>토</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

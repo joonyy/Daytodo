@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일정 기록</title>
+  <style>
+    /* Reset CSS */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    /* Input Form */
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Schedule List */
+    .schedule-list {
+      width: 86.5%;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    .delete-button {
+      margin-left: auto;
+    }
+
+    /* Add Schedule Form */
+    .add-schedule-button-container {
+      display: grid;
+      grid-template-columns: auto 50px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .add-schedule-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: left;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 96%;
+    }
+
+    /* Hide the add schedule form by default */
+    .hide {
+      display: none;
+    }
+
+    /* 입력된 일정의 텍스트 강조 */
+    .schedule-item span {
+      width: 80%;
+      font-weight: bold;
+    }
+
+    .formtext {
+      width: 70%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>D2D</h1>
+  <h2 id="currentDate"></h2> <!-- 현재 날짜를 표시할 h2 요소 추가 -->
+  <div id="scheduleList" class="schedule-list">
+    <!-- 여기에 일정이 표시됩니다 -->
+  </div>
+  <div class="add-schedule-button-container">
+    <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
+    <br> <!-- 여기에 br 태그 추가 -->
+    <form id="addScheduleForm" class="hide">
+      <input type="text" id="eventName" class="formtext" placeholder="일정을 입력하세요">
+      <button type="submit">일정 추가</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // 현재 날짜를 가져와서 표시하는 함수
+  function displayCurrentDate() {
+    var currentDate = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+    document.getElementById('currentDate').textContent = formattedDate;
+  }
+
+  // 페이지 로드 시 현재 날짜 표시
+  displayCurrentDate();
+
+  document.getElementById("toggleAddScheduleForm").addEventListener("click", function () {
+    // Toggle the visibility of the add schedule form
+    document.getElementById("addScheduleForm").classList.toggle("hide");
+
+    // If the form is shown, focus on the input field
+    if (!document.getElementById("addScheduleForm").classList.contains("hide")) {
+      document.getElementById("eventName").focus();
+    }
+  });
+
+  document.getElementById("addScheduleForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    var eventName = document.getElementById("eventName").value.trim();
+
+    if (eventName !== "") {
+      var scheduleItem = document.createElement("div");
+      var checkBox = document.createElement("input");
+      checkBox.type = "checkbox";
+      checkBox.addEventListener("change", function () {
+        if (this.checked) {
+          scheduleText.classList.add("completed");
+        } else {
+          scheduleText.classList.remove("completed");
+        }
+      });
+      var scheduleText = document.createElement("span");
+      scheduleText.textContent = eventName;
+      scheduleItem.appendChild(checkBox);
+      scheduleItem.appendChild(scheduleText);
+      scheduleItem.className = "schedule-item";
+
+      // Add delete button
+      var deleteButton = document.createElement("button");
+      deleteButton.textContent = "삭제";
+      deleteButton.className = "delete-button";
+      deleteButton.addEventListener("click", function () {
+        scheduleItem.remove();
+      });
+      scheduleItem.appendChild(deleteButton);
+
+      // Add schedule item to the list
+      var scheduleList = document.getElementById("scheduleList");
+      scheduleList.insertBefore(scheduleItem, scheduleList.firstChild);
+
+      // Clear the input field
+      document.getElementById("eventName").value = "";
+    }
+  });
+</script>
+</body>
+</html>

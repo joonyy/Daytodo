@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>D2Dsidebar</title>
+  <title>sidebar</title>
   <link rel="stylesheet" href="../../static/styles/sidebar-d.css">
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <section>
-        <article id="menuToggle">
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          <ul id="menu">
-            <li><a href="#">Create TODO</a></li>
-            <li><a href="#">View TODO</a></li>
-            <li><a href="#">Mypage</a></li>
-          </ul>
-        </article>
-      </section>
+    <nav>
+      <div class="navbar">
+        <!-- label로 감싸진 햄버거 아이콘 -->
+        <label for="menuCheckbox">
+          <div id="menuToggle">
+            <input id="menuCheckbox" type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+              <li><a href="#">Create TODO</a></li>
+              <li><a href="#">View TODO</a></li>
+              <li><a href="#">Mypage</a></li>
+            </ul>
+          </div>
+        </label>
+      </div>
     </nav>
-  </header>
 </body>
 </html>

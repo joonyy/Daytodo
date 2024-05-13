@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/mypage.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <title>Owl's Shoes</title>  
+  <script src="../js/mypage.js"></script>
+  <script defer src="../js/data.js"></script>
+  <style>
+    /*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/* 색상 정의 */
+:root {
+  --background-color-main-page: rgba(144, 238, 144, 0.66);
+  --background-color-footer-icon : violet;
+  --background-color-list-box : lightgreen;
+  --background-color-text-btn : gray;
+  --background-color-caution-box : ivory;
+  --background-color-footer-text: rgb(84, 44, 24);
+  --background-color-login-popup-background: rgb(232, 232, 232);
+  --background-color-popup-background: rgba(0, 0, 0, 0.5);
+  --background-color-main-card: rgba(36, 168, 36, 0.516);
+  --background-color-tree-brown: rgb(84, 44, 24);
+  --color-text-btn : white;
+  --color-caution-text : rgb(143, 143, 143);
+  --color-btn: #20ad45;
+}
+
+body * {
+  font-family: "Jua", sans-serif;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.main-page-text-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 500px;
+}
+
+.main-page-text {
+  font-size: 80px;
+  color: white;
+  margin: 0;
+}
+
+/* text-btn 시작 */
+.text-btn{
+  background-color: var(--background-color-text-btn);
+  color: var(--color-text-btn);
+  padding: 5px 10px;
+  margin: 1% 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.text-btn a {
+  text-decoration: none;
+  color: var(--color-text-btn);
+}
+/* text-btn 끝 */
+
+
+
+/* login-popup 시작 */
+.popup-background {
+  background-color: var(--background-color-tree-brown);
+  position: fixed;
+    top: 0;
+    left: 0;
+  width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 0s, opacity 0.3s ease;
+    -o-transition: visibility 0s, opacity 0.3s ease;
+    transition: visibility 0s, opacity 0.3s ease;
+  z-index: 999;
+}
+
+.search-popup-background {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+    background-color: var(--background-color-popup-background);
+    top: 20%;
+    left: 25%;
+  width: 50%;
+    height: 50%;
+  border-radius: 20px;  
+}
+
+.popup {
+    background-color: var(--background-color-tree-brown);
+    border-radius: 1vw;
+    width: 25vw;
+    height: 520px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: visibility 0s, opacity 0.3s ease;
+    -o-transition: visibility 0s, opacity 0.3s ease;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+.popup-close-btn .btn {
+  padding: 0;
+}
+
+.search-popup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 2%;
+  width: 70%;
+  height: 20%;
+  background-color: var(--background-color-popup-background);
+}
+
+.search-popup .btn {
+  padding: 0;
+  color: white;
+}
+
+.ID-box, .PW-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-popup p, .signin-popup p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  font-size: 30px;
+}
+
+.auth-box-ID{
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 60%;
+  border:1px solid #000000;
+  padding: 10px;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  text-align: center;
+  min-width: 100px;
+  font-size: 20px;
+}
+
+.login-btn {
+  font-size: 20px;
+}
+
+.find-box {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 15px;
+}
+
+.find-btn-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.auto-login-btn-box, .signin-btn-box {
+  font-size: small;
+  position: relative;
+  font-size: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0;
+}
+
+.auto-login-toggle-btn {
+  position: relative;
+  right: 40%;
+  text-align: center;
+  display: inline-block;
+  width: 10%;
+  height: 5%;
+  margin: 0;
+}
+
+.auto-login-btn-box .toggleSwitch {
+  margin: 0;
+}
+/* login-popup 끝 */
+
+/*button 시작*/
+/*전체 버튼에 적용되는 설정*/
+.btn{
+  position:relative;
+  border:none;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 15px;
+  text-decoration: none;
+  font-weight: 600;
+  -webkit-transition:0.25s;
+  -o-transition:0.25s;
+  transition:0.25s;
+  text-align: center;
+  color: var(--color-btn);
+}
+
+.find-btn .btn, .signin-btn-box .btn {
+  padding: 5px 10px;
+  margin: 1% 0;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn:active{
+  -webkit-transform:scale(1.3);
+      -ms-transform:scale(1.3);
+          transform:scale(1.3);
+}
+
+.btn:hover{
+  letter-spacing: 2px;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+  cursor: pointer;
+}
+
+.signin-btn-box > .btn, .signin-popup .btn{
+  background-color: var(--background-color-tree-brown);
+}
+
+/* login, logout, 회원가입 버튼에 적용되는 설정 */
+.auth-btn{
+  background-color: var(--color-btn);
+  color: #000000;
+}
+
+.auth-btn:hover {
+  background-color: var(--color-btn);
+  color: var(--background-color-tree-brown);
+}
+
+.search-btn{
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.search-btn > img{
+  display: inline-block;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.toggleSwitch {
+  width: 80px;
+  height: 30px;
+  display: block;
+  position: relative;
+  right: inherit;
+  border-radius: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 3px 3px rgba(0 0 0 / 15%);
+          box-shadow: 0 0 3px 3px rgba(0 0 0 / 15%);
+  cursor: pointer;
+  margin: 15px;
+}
+
+.toggleSwitch .toggleButton {
+  width: 30%;
+  height: 80%;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-radius: 50%;
+  background: #000000;
+}
+
+#toggle:checked ~ .toggleSwitch {
+  background: #000000;
+}
+
+#toggle:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 30px);
+  background: #fff;
+}
+
+.toggleSwitch, .toggleButton {
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.nav-btn{
+  background: #08db40;
+  color:#fff;
+  font-size: 16px;
+}
+
+.search-popup > .btn {
+  position: absolute;
+  right: 2%;
+}
+/*button 종료*/
+
+/*input-box 시작*/
+.auth-box{
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width:25%;
+  position: absolute;
+  border:1px solid #000000;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  text-align: center;
+  min-width: 100px;
+  font-size: 15px;
+}
+
+.search-box{
+  position: relative;
+  width:100%;
+  height: 100%;
+}
+
+#search-input{
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width:100%;
+  min-width:30px;
+  border:1px solid #000000;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 160%;  
+}
+
+.search-box img{
+  right:12px;
+  position: absolute;
+  height: 80%;
+  top:9px;
+  margin : 0;
+}
+/*input-box 종료*/
+
+.nav-bar{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.nav-bar-items {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-bar-comp-name {
+  font-size: 40px;
+  color: var(--color-text-btn);
+}
+
+.nav-bar-menu {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* 로고 */
+.nav-bar-logo {
+  display: inline-block;
+  height: 100%;
+  width: 60px;
+  margin-left: 2%;
+}
+
+.nav-bar-logo img{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+/* 브랜드명 */
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.nav-bar-comp-name > a{
+  color: var(--color-btn);
+}
+
+/* 우측상단메뉴 */
+.nav-bar-menu :not(:first-child){
+  margin-left: 3%;
+}
+
+
+/*brand-text 시작*/
+.brand-text{
+  font-size: 100px;
+  text-align: center;
+}
+
+
+
+
+.my-container{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*my-left-container 시작*/
+.my-left-container{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30vw;
+  height:650px;
+  border-right:1px var(--background-color-tree-brown) solid ;
+  
+}
+/* 헤더,메뉴 구분hr */
+.line1 {
+  border: none;
+border-bottom: 1px solid var(--background-color-tree-brown);
+text-align: center;
+overflow: visible;
+margin-bottom: 0;
+}
+
+.line1::after {
+  position: relative;
+  top: -15px;
+  padding: 0 10px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+      transform: rotate(60deg);
+}
+  /* 헤더,메뉴 구분hr 종료 */
+
+.my-menu{
+  /* 메뉴 제일 상위 () */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.my-name-container{ /* 이름박스 css */
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "paybooc-Light", sans-serif;
+  margin-top: 30px;
+  width:25vw;
+  height:20vh;
+  background-color : #08db40;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  color: white;
+  font-size: 30px;
+
+}
+
+/* 이름,카테고리 hr */
+.line2{
+  border: none;
+border-top: 1px solid var(--background-color-tree-brown);
+text-align: center;
+overflow: visible;
+
+}
+/* 이름카테고리 hr종료 */
+
+.my-menu-lists{
+  /*ul박스 */
+  font-size: 18px;
+  padding: 5px 0;
+  width:30vw; 
+  
+}
+.my-menu-list{
+  list-style-type: none;
+  padding: 10px 0;
+  width:85%;
+  height: auto;
+  margin: auto;
+
+}
+/*button 시작*/
+.btn {
+  position:relative;
+  border:none;
+  display: block;
+  padding: 15px 30px;
+  border-radius: 15px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  -webkit-transition:0.25s;
+  -o-transition:0.25s;
+  transition:0.25s;
+}
+
+.btn:active{
+  -webkit-transform:scale(1.3);
+      -ms-transform:scale(1.3);
+          transform:scale(1.3);
+}
+.btn:hover{
+  letter-spacing: 2px;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1);
+  cursor: pointer;
+}
+
+.text-btn{
+  background-color :  #08db40;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  color: white;
+}
+/*button 종료*/
+/*my-left-container 종료*/
+/*my-right-container 시작*/
+.my-right-container{
+  width:70vw;
+  height: 100vh;
+}
+
+.text {
+  text-decoration: none;
+  text-align: center;    
+}
+
+/* 우측 카테고리 틀 */
+.category-content {
+  position: relative;
+  display: block;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "paybooc-Light", sans-serif;
+  margin-left: 60px;
+  width:60vw;
+  height:67.5vh;
+  border-radius: 15px;
+  color: var(--background-color-text-btn);
+  font-size: 30px;
+}
+/* 우측 카테고리 틀 종료 */
+
+/* 카테고리별 각 내용 */
+
+/* 찜목록 */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--background-color-tree-brown); /* 구분선 색상 */
+  margin-top: 20px; /* 구분선과 위쪽 요소 간의 간격 */
+  margin-bottom: 20px; /* 구분선과 아래쪽 요소 간의 간격 */
+}
+/* 찜목록 종료 */
+
+/* 장바구니 */
+#addToCartButton,
+#checkoutButton {
+  background-color:  #08db40;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  color: white;
+  font-size: 30px;
+}
+/* 주문내역 */
+.order-list {
+  margin-bottom: 20px;
+  color: var(--background-color-text-btn);
+}
+.order-list ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  color: var(--background-color-text-btn);
+}
+.order-list ul li {
+  margin-bottom: 5px;
+}
+/* 총 금액 */
+.total-price {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 10px;
+color: var(--background-color-text-btn);
+font-size: 16px;
+}
+/* 안내문구 */
+.delivery-info {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: black;
+}
+.delivery-info h3 {
+  margin-top: 0;
+}
+
+.product-info img {
+width: 100px; 
+height: 100px; 
+-o-object-fit: cover; 
+   object-fit: cover; 
+}
+
+/* 주문내역 종료 */
+
+/* 회원 정보 */
+
+.member-info-box {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 50%;
+  padding: 50px;
+  margin: 10%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+.member-info-box .left-column{
+-webkit-box-flex: 1;
+  -ms-flex: 1;
+      flex: 1;
+padding: auto;
+text-align: center;
+color: var(--background-color-text-btn);
+}
+
+.member-info-box .right-column {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 0 10px;
+  color: var(--background-color-text-btn);
+}
+.member-info-box label {
+  display: block;
+  margin-bottom: 10px;
+}
+.member-info-box input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.member-info-box button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #08db40;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* 회원 정보종료 */
+
+/* 계정 탈퇴 */
+#Delete {
+  width: 300px;
+  padding: 20px;
+  margin: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-size: 30px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: var(--background-color-text-btn);
+}
+
+.animated-button {
+position: relative;
+overflow: hidden;
+-webkit-transition: all 0.4s ease-in-out;
+-o-transition: all 0.4s ease-in-out;
+transition: all 0.4s ease-in-out;
+}
+
+.animated-button::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 0;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.1);
+-webkit-transition: all 3s ease-in-out;
+-o-transition: all 3s ease-in-out;
+transition: all 3s ease-in-out;
+}
+
+.animated-button:hover::before {
+width: 100%;
+content: "탈퇴를 신중히 결정하세요.";
+font-size: 16px;
+color: black;
+}
+/* 계정탈퇴 안내문구 */
+.notice-box {
+border-radius: 8px;
+-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+background-color : rgba(0, 0, 0, 0.1);
+border: 1px solid #ccc;
+padding: 15%;
+margin-top: 20px;
+color: black;
+}
+
+.notice-text {
+margin: 0;
+font-size: auto;
+}
+
+/* 계정 탈퇴 종료 */
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-bar">
+      <div class="nav-bar-items">
+        <div class="nav-bar-comp-name"><a href="main-page-login.html" class="btn">부엉이 신발장</a></div>
+        <div class="nav-bar-menu">
+          <button class="btn search-btn" onclick="SearchPopupOpen()"><img src="../img/search.svg" alt=""></button>
+          <a href="../pages/mypage.html" class="btn nav-btn">MYPAGE</a>
+          <a href="../pages/main-page-logout.html" class="btn nav-btn">LOGOUT</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <hr class="line1">
+  <main>
+    <section class="popup-background search-popup-background">
+      <div class="popup search-popup">
+        <div class="btn" onclick="SearchPopupClose()">X</div>
+        <div class="search-box">
+          <input type="text" id="search-input">
+          <a href="../pages/category-page-login.html"><img src="../img/search.svg" alt=""></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="my-container">
+    <aside class="my-left-container">
+      <div class="my-name-container"><span>반가워요! KDT12님</span></div>
+      <div class="my-menu-container">
+        <nav class="my-menu">
+          <div class="left-container">
+            <ul class="my-menu-lists">
+              <hr class="line2" width="100%" color="brown">
+              <li class="my-menu-list"><a href="#" onclick="showCategory('찜한 목록')" class="btn text-btn btn-active">찜한 목록</a></li>
+              <li class="my-menu-list"><a href="#" onclick="showCategory('장바구니')" class="btn text-btn btn-active">장바구니</a></li>
+              <li class="my-menu-list"><a href="#" onclick="showCategory('주문 내역')" class="btn text-btn btn-active">주문 내역</a></li>
+              <li class="my-menu-list"><a href="#" onclick="showCategory('회원 정보')" class="btn text-btn btn-active">회원 정보</a></li>
+              <li class="my-menu-list"><a href="#" onclick="showCategory('계정 탈퇴')" class="btn text-btn btn-active">계정 탈퇴</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </aside>
+    <div class="coment1" id="coment">
+      <div class="Detail-menu">
+        <!-- 찜한 목록 -->
+        <div id="찜한 목록" class="category-content" style="display: none;">
+          <h3>찜한 목록</h3>
+          <p>찜하기 물품의 총 금액: <span id="favoriteTotalPrice">0</span>원</p>
+          <button id="addToCartButton" onclick="addToCart()">장바구니에 담기</button>
+          <button id="checkoutButton" onclick="checkout()">바로 결제하기</button>
+        </div>
+        
+        <!-- 장바구니 -->
+        <div id="장바구니" class="category-content" style="display: none;">
+          <h2>장바구니</h2>
+          <div id="purchaseList">
+            <!--구매 목록이 추가될 부분 -->
+          </div>
+          <p>총 상품 금액: <span id="totalPrice">0</span>원</p>
+          <button id="checkoutButton" onclick="checkout()">바로 결제하기</button>
+        </div>
+
+        <!-- 주문 내역 -->
+      <div id="주문 내역" class="category-content" style="display: none;">
+        <div class="order-list">
+          <h3>주문 내역</h3>
+          <!-- <div class="order-item">
+            <div class="product-info">
+              <ul>
+                <img src="../img/shoes1.png" alt="상품 A 이미지">
+                <li>상품명: 상품 A</li>
+                <li>사이즈: 250mm</li>
+                <li>색상: 블랙</li>
+                <li>가격: 1,000,000원</li>
+              </ul>
+            </div>
+          </div> -->
+          <!-- <div class="order-item">
+            <div class="product-info">
+              <ul>
+                <img src="../img/shoes10.png" alt="상품 B 이미지">
+                <li>상품명: 상품 B</li>
+                <li>사이즈: 270mm</li>
+                <li>색상: 화이트</li>
+                <li>가격: 1,500,000원</li>
+              </ul>
+            </div>
+          </div> -->
+          <!--상품 추가하기 +-->
+          <!-- <div class="total-price">
+            <p>총 주문 금액: 2,500,000원</p>
+          </div> -->
+        </div>
+        <!-- <div class="delivery-info">
+          <h3>배송 안내</h3>
+          <p>주문하신 상품은 구매일로부터 2~3일이 소요됩니다.</p>
+          <h3>주의사항</h3>
+          <ul>
+            <li>상품을 수령하실 때에는 포장 상태를 꼭 확인해주세요.</li>
+            <li>배송 중 물품이 손상되었거나 누락된 경우에는 즉시 고객센터로 연락해주세요.</li>
+          </ul>
+        </div> -->
+      </div>
+
+      <!-- 회원 정보 -->
+      <div id="회원 정보" class="category-content" style="display: none;">
+        <div class="member-info-box">
+          <div class="left-column">
+            <label for="username">아이디:</label>
+            <input type="text" id="username" placeholder="아이디를 입력하세요">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" placeholder="비밀번호를 입력하세요">
+            <button class="login-btn" onclick="login()">로그인</button>
+          </div>
+          <div class="right-column">
+            <div class="change-info" id="change-info" style="display: none;">
+              <label for="new-shipping-address">새로운 배송지:</label>
+              <input type="text" id="new-shipping-address" placeholder="새로운 배송지를 입력하세요">
+              <button class="btn" onclick="changeShippingAddress()">배송지 변경</button>
+            </div>
+            <div class="change-password" id="change-password" style="display: none;">
+              <label for="new-password">새로운 비밀번호:</label>
+              <input type="password" id="new-password" placeholder="새로운 비밀번호를 입력하세요">
+              <label for="confirm-new-password">비밀번호 확인:</label>
+              <input type="password" id="confirm-new-password" placeholder="비밀번호를 다시 확인하세요">
+              <button class="btn" onclick="changePassword()">비밀번호 변경</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 계정 탈퇴 -->
+      <div id="계정 탈퇴" class="category-content" style="display: none;">
+        <button id="Delete" onclick="showConfirmation()" class="animated-button" >계정 탈퇴</button>
+        <div class="notice-box" id="noticeBox">
+          <p class="notice-text">계정을 탈퇴하면<br>모든 데이터가 삭제되며</p>
+          <p class="notice-text">한번 삭제된 데이터는 복구되지 않습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    console.log("working");
+
+// Signin-popup, Login-popup 페이지 보이기, 숨기기 시작
+function LoginPopupOpen() {
+  var LoginPopup = document.querySelector('.login-popup-background');
+  LoginPopup.style.visibility = "visible";
+  LoginPopup.style.opacity = '1';
+}
+
+function LoginPopupClose() {
+  var LoginPopup = document.querySelector('.login-popup-background');
+  LoginPopup.style.visibility = "hidden";
+  LoginPopup.style.opacity = '0';
+}
+
+function SigninPopupOpen() {
+  var SigninPopup = document.querySelector('.signin-popup-background');
+  SigninPopup.style.visibility = "visible";
+  SigninPopup.style.opacity = '1';
+}
+
+function SigninPopupClose() {
+  var SigninPopup = document.querySelector('.signin-popup-background');
+  SigninPopup.style.visibility = "hidden";
+  SigninPopup.style.opacity = '0';
+}
+
+function SearchPopupOpen() {
+  var SigninPopup = document.querySelector('.search-popup-background');
+  SigninPopup.style.visibility = "visible";
+  SigninPopup.style.opacity = '1';
+}
+
+function SearchPopupClose() {
+  var LoginPopup = document.querySelector('.search-popup-background');
+  LoginPopup.style.visibility = "hidden";
+  LoginPopup.style.opacity = '0';
+}
+// Signin-popup, Login-popup 페이지 보이기, 숨기기 끝
+
+// left-coment 박스 호출
+function showCategory(categoryId) {
+  var categoryContents = document.querySelectorAll('.category-content');
+  for (var i = 0; i < categoryContents.length; i++) {
+      categoryContents[i].style.display = 'none';
+  }
+
+  var selectedCategory = document.getElementById(categoryId);
+  if (selectedCategory) {
+      selectedCategory.style.display = 'block';
+  }
+}
+
+// 찜목록 JS
+function addToCart() {
+  const cartSection = document.getElementById('장바구니');
+  cartSection.style.display = 'block'; 
+  cartSection.scrollIntoView({ behavior: 'smooth' });
+  if (!document.querySelector('.divider')) {
+    createDivider();
+  }
+}
+function createDivider() {
+  const divider = document.createElement('div');
+  divider.classList.add('divider'); 
+  const favoriteList = document.getElementById('찜한 목록');
+  favoriteList.parentNode.insertBefore(divider, favoriteList.nextSibling);
+}
+function checkout() {
+  window.location.href = 'pay.html';
+}
+// 찜목록 JS 종료
+
+// 장바구니 JS
+function checkout() {
+  window.location.href = 'pay.html';
+}
+// 장바구니 JS 종료
+
+// 주문 내역 JS 없음 X
+
+// 회원정보 
+function login() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  
+  var user1 = {
+      name: "kim",
+      password: "jun"
+    };
+    var user2 = {
+      name: "ningdol",
+      password: "qwer2024!"
+    };
+
+  if ((username === "bae" && password === "dong") || 
+      (username === user1.name && password === user1.password) ||
+      (username === user2.name && password === user2.password)) {
+      // 로그인 성공
+      document.getElementById("change-info").style.display = "block"; 
+      document.getElementById("change-password").style.display = "block"; 
+      alert("로그인 되었습니다.");
+  } else {
+      // 로그인 실패
+      alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+  }
+}
+
+function changeShippingAddress() {
+  var newShippingAddress = document.getElementById("new-shipping-address").value;
+  alert("배송지 주소가 변경되었습니다.");
+}
+
+function changePassword() {
+  var newPassword = document.getElementById("new-password").value;
+  var confirmNewPassword = document.getElementById("confirm-new-password").value;
+  if (newPassword === confirmNewPassword) {
+      alert("비밀번호가 변경되었습니다.");
+  } else {
+      alert("새로운 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+  }
+}
+//회원 정보 종료
+
+
+// 계정 탈퇴
+function showConfirmation() {
+  if (confirm("계정을 탈퇴하시겠습니까?")) {
+      window.location.href = "main-page-logout.html";
+  }
+}
+// 계정탈퇴종료
+</script>
+</body>
+</html>
