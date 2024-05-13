@@ -12,7 +12,7 @@ router.get('/week',controller.week);
 router.get('/date',controller.date);
 
 //일간 뷰 -> 해당일 투두 제목의 자세한 투두 가져오기
-router.get('/date/:todo_id', controller.showTodo);
+router.get('/showTodo', controller.showTodo);
 
 //일간 뷰 -> 새로운 투두 생성
 router.post('/newTodo', controller.createTodo);

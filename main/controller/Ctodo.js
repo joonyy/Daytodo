@@ -24,18 +24,31 @@ exports.date = (req,res)=>{
 
 //새로 만들 수 있도록 한다!
 exports.createTodo = (req,res) =>{
-  //데이터베이스에 새로 생성한다.
+  const data = req.body;
+  console.log(data);
   console.log('새로 만들었어~');
+  data.home = "집에간절히 가고싶습니다.";
+  console.log(data);
+  res.send(data);
 }
 
 exports.showTodo = (req,res) =>{
   //투두 항목 자세히 보기.
-  console.log('돌려줬어~')
+  const data = req.query;
+  console.log("프론트에서 넘어온 : ",data);
+  data.date = "오늘.";
+  console.log('돌려줬어~');
+  res.send(data);
 }
 
 exports.editTodo = (req,res) =>{
   //todo id를 통해 task인지 event인지 분별하여, 수정할 데이터를 보여줘야 해요. form에 작성해둔 페이지를 
-  console.log('이걸 고칠거구나~');
+  const data = req.query;
+  console.log(data);
+  data.name = "주모니";
+  console.log('이걸 고칠거구나~ 보여줄게~');
+  console.log(data);
+  res.send(data);
 }
 
 exports.updateTodo = (req,res) =>{
