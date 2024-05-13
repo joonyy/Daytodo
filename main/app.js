@@ -10,11 +10,17 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.use('/static',express.static(__dirname + '/static'))
-todoRouter = require('./routes/todo');
+const todoRouter = require('./routes/todo');
 app.use('/', todoRouter);
 
-const userRouter = require('./routes/user')
+const userRouter = require('./routes/user');
 app.use('/user',userRouter);
+
+const othersRouter = require('./routes/others');
+app.use('/others', othersRouter);
+
+const searchRouter = require('./routes/search');
+app.use('/search',searchRouter);
 
 sequelize
   .sync({force:false})
