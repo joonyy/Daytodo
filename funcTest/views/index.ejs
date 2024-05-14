@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet"> -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <title>D2D</title>  
   <style>
@@ -13,29 +17,30 @@
     .navbar {
         overflow: hidden;
         background-color: #333;
+        text-align: center; /* Center align the contents */
+    }
+    .navbar .brand {
+        padding: 14px 20px;
+        color: #f2f2f2;
+        font-size: 20px;
+        display: inline-block; /* Make it an inline-block to center */
+        margin: auto; /* Center the brand horizontally */
     }
     .navbar a {
-        float: left;
-        display: block;
+        display: block; /* Change to block for vertical alignment */
         color: #f2f2f2;
-        text-align: center;
-        padding: 14px 20px;
         text-decoration: none;
+        padding: 14px 20px;
     }
     .navbar a:hover {
         background-color: #ddd;
         color: black;
     }
-    .menu {
-        float: left;
-        width: 100px;
-        background-color: #f2f2f2;
-        padding: 15px;
-    }
     table {
         border-collapse: collapse;
         width: 80%;
-        margin-left: 150px;
+        margin-left: auto;
+        margin-right: auto;
     }
     th, td {
         border: 1px solid black;
@@ -48,20 +53,15 @@
     td {
         height: 100px;
     }
-</style>
+  </style>
 </head>
 <body>
 
 <div class="navbar">
-<a href="#">Home</a>
-<a href="#">About</a>
-<a href="#">Contact</a>
-</div>
-
-<div class="menu">
-<p>1</p>
-<p>2</p>
-<p>3</p>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+  <div class="brand">D2D</div> <!-- Move "D2D" inside navbar -->
 </div>
 
 <h2>2024년 5월</h2>
@@ -79,7 +79,12 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<%for(int i = 1; i<=;i++){%>
+  <%%>
+  <tr>
+    <td></td>
+<%}%>
+  <tr>
   <td></td>
   <td></td>
   <td></td>
@@ -92,7 +97,7 @@
   <td>5</td>
   <td>6</td>
   <td>7</td>
-  <td onclick="func()">8</td>
+  <td>8</td>
   <td>9</td>
   <td>10</td>
   <td>11</td>
@@ -126,10 +131,5 @@
 </tr>
 </tbody>
 </table>
-<script>
-  function func(){
-    console.log('clicked');
-  }
-</script>
 </body>
 </html>
