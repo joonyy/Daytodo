@@ -7,13 +7,7 @@ const TodoModel = (sequelize, DataTypes) =>{
         allowNull:false,
         autoIncrement:true,
       },
-      user_id:{
-        type: DataTypes.INTEGER,
-        allowNull:false,
-      },
-      tags_id:{
-        type:DataTypes.INTEGER
-      }
+      
     }
   )
   return Todo;

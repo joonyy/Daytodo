@@ -13,7 +13,7 @@ const UserModel = (sequelize, DataTypes) =>{
       username:{
         type:DataTypes.STRING(255),
       },
-      password:{
+      user_pw:{
         type:DataTypes.STRING(255),
       }
     }

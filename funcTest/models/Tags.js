@@ -1,18 +1,19 @@
 const TagsModel = (sequelize, DataTypes) =>{
   const Tags = sequelize.define(
-    "Todos",{
-      todo_id:{
+    "Tags",{
+      tag_id:{
         type:DataTypes.INTEGER,
         primaryKey:true,
         allowNull:false,
         autoIncrement:true,
       },
-      user_id:{
+      todo_id:{
         type: DataTypes.INTEGER,
         allowNull:false,
       },
-      tags_id:{
-        type:DataTypes.INTEGER
+      tag_name:{ 
+        type : DataTypes.String(255),
+        allowNull:false,
       }
     }
   )
