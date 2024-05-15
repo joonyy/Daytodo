@@ -1,37 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./index.css">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <title>D2D</title>  
   <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-    }
-    .navbar {
-        overflow: hidden;
-        background-color: #333;
-        text-align: center; /* Center align the contents */
-    }
-    .navbar .brand {
-        padding: 14px 20px;
-        color: #f2f2f2;
-        font-size: 20px;
-        display: inline-block; /* Make it an inline-block to center */
-        margin: auto; /* Center the brand horizontally */
-    }
-    .navbar a {
-        display: block; /* Change to block for vertical alignment */
-        color: #f2f2f2;
-        text-decoration: none;
-        padding: 14px 20px;
-    }
-    .navbar a:hover {
-        background-color: #ddd;
-        color: black;
     }
     table {
         border-collapse: collapse;
@@ -39,21 +17,41 @@
         margin-left: auto;
         margin-right: auto;
     }
+    .dates {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
     th, td {
-        border: 1px solid black;
-        text-align: center;
-        padding: 10px;
+      border: 1px solid black;
+      text-align: center;
+      padding: 10px;
+  }
+    td {
+      top:5px;
+      left:5px;
+      position: relative;
+      height: 100px;
+    }
+    td:hover {
+      border: 2px solid red;
     }
     th {
         background-color: #f2f2f2;
     }
-    td {
-        height: 100px;
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-<h2><%= year %>년 <%= month + 1 %>월</h2>
+<div class="btn-container">
+  <button id="prevMonth" onclick="previousMonth()">이전 달</button>
+  <h2 class="yearMonth"></h2>
+  <button id="nextMonth" onclick="nextMonth()">다음 달</button>
+</div>
 <table>
 <thead>
 <tr>
@@ -65,27 +63,75 @@
   <th>금</th>
   <th>토</th>
 </tr>
-<% let date = 0 %>
-<% for(let i = 0;i< weekCount;i++){ %>
-  <tr>
-    <% for(let j=1;j <= 7; j++){ %>
-      <% if(i * 7 + j < firstDayOfMonth + 1 || date >= daysInMonth){ %>
-        <td></td>
-    <% }else{ %>
-        <td id="<%= date + 1 %>">
-          <%= ++date %>
-          
-        </td>
-      <% } %>
-    <% } %> 
-  </tr>
-  <%}%>
 </thead>
-<tbody>
+<tbody id="calendar-body">
   
-  </tbody>
+</tbody>
 </table>
+
 <script>
+let chosenDate = new Date(); // 선택된 날짜 : (오늘 날짜 :default)
+let chosenYear = chosenDate.getFullYear(); // 선택된 해
+let chosenMonth = chosenDate.getMonth();//선택된 달(0 : 1월, 1:2월 , ...)
+let firstDate, lastDate, daysInMonth, firstDayOfMonth, lastDayOfMonth, weekCount;
+
+const renderCalendar = () =>{ // 달력 출력 함수
+  firstDate = new Date(chosenYear, chosenMonth, 1); // 선택된 달 첫날. 일 정보
+  lastDate = new Date(chosenYear, chosenMonth + 1 , 0); // 선택된 달 마지막 날 일 정보
+  daysInMonth = lastDate.getDate(); // 이번달 일 수(마지막 일)
+  firstDayOfMonth = firstDate.getDay(); // 첫째 날의 요일 출력. (0 : 일요일, 1 : 월요일)
+  lastDayOfMonth = lastDate.getDay(); // 마지막 날의 요일 출력.
+  weekCount = (firstDayOfMonth+daysInMonth)%7 === 0? Math.floor((firstDayOfMonth+daysInMonth)/7) : Math.floor(((firstDayOfMonth+daysInMonth)/7))+ 1;
+  
+  // 선택된 연도와 월 표시하기
+  document.querySelector('.yearMonth').textContent = `${chosenYear} 년 ${chosenMonth + 1} 월`;
+
+  let calendarBody = document.getElementById('calendar-body');
+  calendarBody.innerHTML = '';
+
+  let date = 0;
+  for(let i = 0; i < weekCount; i++){
+    let row = document.createElement("tr");
+    for(let j = 1; j <= 7; j++){
+      let cell = document.createElement("td");
+      if(!(i * 7 + j < firstDayOfMonth + 1 || date >= daysInMonth)){
+        date++;
+        let cellContent = document.createElement("div");
+        cellContent.textContent = date;
+        cellContent.classList.add("dates");
+        cell.appendChild(cellContent);
+        cell.setAttribute('data-date', date); // 날짜 데이터 추가
+        cell.addEventListener('click', (event) => {
+          chosenDate = new Date(chosenYear, chosenMonth, parseInt(event.target.getAttribute('data-date')));
+          console.log(`chosenDate is now : ${chosenDate}`);
+        });
+      }
+      row.appendChild(cell);
+    }
+    calendarBody.appendChild(row);
+  }
+}
+
+const previousMonth = () =>{
+  chosenMonth--;
+  if(chosenMonth < 0){
+    chosenMonth = 11;
+    chosenYear--;
+  }
+
+  renderCalendar();
+}
+
+const nextMonth = () => {
+  chosenMonth++;
+  if (chosenMonth > 11) {
+    chosenMonth = 0;
+    chosenYear++;
+  }
+  renderCalendar();
+}
+//최초 입장 시 달력 출력.
+renderCalendar();
 
 </script>
 </body>
