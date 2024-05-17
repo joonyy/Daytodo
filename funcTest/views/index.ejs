@@ -75,6 +75,37 @@ let chosenYear = chosenDate.getFullYear(); // 선택된 해
 let chosenMonth = chosenDate.getMonth();//선택된 달(0 : 1월, 1:2월 , ...)
 let firstDate, lastDate, daysInMonth, firstDayOfMonth, lastDayOfMonth, weekCount;
 
+const handleChosenDate = () =>{
+  const userId = 1;
+  const month = chosenMonth +1;
+
+  axios.get(`/getThisMonthTodos?userId=${userId}&month=${month}`)
+  .then(res =>{
+    const todos = res.data;
+    console.log("서버에서 받아온 todos : ",todos);
+
+    //모든 td를 선택한다.
+    const tdElements = document.querySelectorAll('td');
+
+    //받아온 일정이 반복하고, 
+    todos.forEach(todo =>{
+      const targetTd = Array.from(tdElements).find(td => parseInt(td.getAttribute('data-date')) === todo.day);
+      //날짜와 일치하는 속성이 있다면
+      if(targetTd){
+        
+        const todoText = document.createTextNode(todo.todo_name);
+        const todoDiv = document.createElement('div');
+        //해당 날짜에 일정을 추가
+        todoDiv.appendChild(todoText);
+        targetTd.appendChild(todoDiv);
+      }
+    });
+  })
+  .catch(err =>{
+    console.error("todos를 받지 못했어요 : ",err);
+  })
+}
+
 const renderCalendar = () =>{ // 달력 출력 함수
   firstDate = new Date(chosenYear, chosenMonth, 1); // 선택된 달 첫날. 일 정보
   lastDate = new Date(chosenYear, chosenMonth + 1 , 0); // 선택된 달 마지막 날 일 정보
@@ -110,6 +141,8 @@ const renderCalendar = () =>{ // 달력 출력 함수
     }
     calendarBody.appendChild(row);
   }
+
+  handleChosenDate();
 }
 
 const previousMonth = () =>{
@@ -132,7 +165,6 @@ const nextMonth = () => {
 }
 //최초 입장 시 달력 출력.
 renderCalendar();
-
 </script>
 </body>
 </html>
