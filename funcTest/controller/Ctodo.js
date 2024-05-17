@@ -1,6 +1,7 @@
-const models = require('../models')
-
+const models = require('../models/index');
 
 exports.main = (req,res)=>{
-  res.render('index');
+  models.showTodoMain(result =>{
+    res.render('index',{data : result});
+  })
 }

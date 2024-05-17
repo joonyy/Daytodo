@@ -1,0 +1,103 @@
+{
+  "users":[
+    {
+      "user_id":1,
+      "email":"blackhound97@gmail.com",
+      "username": "joony",
+      "user_pw" : "12345678"
+    },
+    {
+      "user_id":2,
+      "email":"dongdong@gmail.com",
+      "username": "dongMyong",
+      "user_pw" : "23456789"
+    },
+    {
+      "user_id":3,
+      "email":"joonWon97@gmail.com",
+      "username": "joonwon",
+      "user_pw" : "34567890"
+    },
+    {
+      "user_id":4,
+      "email":"joonTwo97@gmail.com",
+      "username": "joonlee",
+      "user_pw" : "12345678"
+    },
+    {
+      "user_id":5,
+      "email":"joonThree97@gmail.com",
+      "username": "joonsam",
+      "user_pw" : "12345678"
+    }
+  ],
+  "tags":[
+    {
+      "tag_id":1,
+      "todo_id":2,
+      "tag_name": "학업"
+    },
+    {
+      "tag_id":2,
+      "todo_id":4,
+      "tag_name": "건강"
+    },
+    {
+      "tag_id":3,
+      "todo_id":4,
+      "tag_name": "여행"
+    },
+    {
+      "tag_id":4,
+      "todo_id":1,
+      "tag_name": "취미"
+    },
+    {
+      "tag_id": 5,
+      "todo_id": 3,
+      "tag_name": "요가"
+    }
+  ],
+  "todos":[
+    {
+      "todos_id":1,
+      "user_id":1,
+      "todo_name": "투두1번항목 유저1번에게속한",
+      "description" : "집에가서자세히어떻게 할지 작성했답니다",
+      "date":"2024-05-21",
+      "state":false
+    },
+    {
+      "todos_id":2,
+      "user_id":1,
+      "todo_name": "투두 2번항목 유저1번에게 속한",
+      "description" : "이곳은 null이어도 됩니다.",
+      "date":"2024-05-14",
+      "state":true
+    },
+    {
+      "todos_id":3,
+      "user_id":1,
+      "todo_name": "투두3번항목 유저1번에게 속한",
+      "description" : "집에가서자세히어떻게 할지 작성했답니다",
+      "date":"2024-05-14",
+      "state":true
+    },
+    {
+      "todos_id":4,
+      "user_id":1,
+      "todo_name": "집에가기",
+      "description" : "집에가서자세히어떻게 할지 작성했답니다",
+      "date":"2024-05-14",
+      "state":false
+    },
+    {
+      "todos_id":5,
+      "user_id":1,
+      "todo_name": "집에가기",
+      "description" : "집에가서자세히어떻게 할지 작성했답니다",
+      "date":"2024-05-01",
+      "state":false
+    }
+  ]
+}

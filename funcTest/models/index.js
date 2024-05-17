@@ -1,46 +1,10 @@
-// //엄격한 문법 사용 모드
-// 'use strict'; 
-// const Sequelize = require('sequelize');
-// const config = require(__dirname+"/../config/config.json")["development"];
-// const db = {};
-// const sequelize = new Sequelize(
-//   config.database,
-//   config.username,
-//   config.password,
-//   config
-// )
+const db = require('./db.json');
+const users = db.users;
+const tags = db.tags;
+const todos = db.todos;
 
-// //만들어진 모델이 들어갈 자리.
-// const UserModel = require('./Users')(sequelize, Sequelize);
-// const TodoModel = require('./Todos')(sequelize,Sequelize);
-// const TagsModel = require('./Tags')(sequelize, Sequelize);
-
-// //모델간 관계 설정하기
-
-
-
-// //db 항목에 추가하기
-// db.Todo = TodoModel;
-// db.Tags = TagsModel;
-// db.User = UserModel;
-
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
-// module.exports = db;
-
-const mysql = require('mysql2');
-
-const conn = mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"12345678",
-  database:"funcTest"
-});
-
-exports.showMonthTodo = (cb) =>{
-  conn.query(`SELECT * FROM TODO WHERE()`, (err,rows)=>{
-    if(err) throw err;
-    console.log("MODELS",rows);
-    cb(rows);
-  })
+exports.showTodoMain = (cb) =>{
+  const userOne = users
+  .filter(user => user.user_id === 1)
+  console.log(userOne);
 }
