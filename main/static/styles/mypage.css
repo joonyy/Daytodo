@@ -1,0 +1,49 @@
+.mypopup {
+    display: none; /* 초기에는 팝업 숨김 */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+.mypopup-content {
+    color: white;
+    background-color: black;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px; /* 팝업의 너비 지정 */
+}
+
+.mypopup-content .myclose-btn {
+    color: white;
+position: absolute;
+top: 5px;
+right: 5px;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer; /* 닫기 버튼의 색상을 블랙으로 설정 */
+}
+.submitpw,
+.animated-button {
+/* 공통 CSS 스타일링 */
+display: inline-block;
+background-color: black;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+text-align: center;
+text-decoration: none;
+transition: background-color 0.3s ease;
+}
+
+.submitpw:hover,
+.animated-button:hover {
+background-color: #333;
+}
