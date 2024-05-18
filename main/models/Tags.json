@@ -1,0 +1,29 @@
+{
+  "Tags":[
+    {
+      "tag_id":1,
+      "todo_id":2,
+      "tag_name": "학업"
+    },
+    {
+      "tag_id":2,
+      "todo_id":4,
+      "tag_name": "건강"
+    },
+    {
+      "tag_id":3,
+      "todo_id":4,
+      "tag_name": "여행"
+    },
+    {
+      "tag_id":4,
+      "todo_id":1,
+      "tag_name": "취미"
+    },
+    {
+      "tag_id": 5,
+      "todo_id": 3,
+      "tag_name": "요가"
+    }
+  ]
+}

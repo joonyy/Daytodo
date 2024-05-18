@@ -1,31 +1,30 @@
-//엄격한 문법 사용 모드
-'use strict'; 
-const Sequelize = require('sequelize');
-const config = require(__dirname+"/../config/config.json")["development"];
-const db = {};
-const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config
-)
+const db = require('./db.json');
+const users = db.users;
+const tags = db.tags;
+const todos = db.todos;
 
-//만들어진 모델이 들어갈 자리.
-const UserModel = require('./User')(sequelize, Sequelize);
-const TodoModel = require('./Todo')(sequelize,Sequelize);
-const TaskModel = require('./Task')(sequelize, Sequelize);
-const EventModel = require('./Event')(sequelize, Sequelize);
+//userId 에 해당하는 todos 테이블을 가져오는 함수
+const getTodosByUserId = (userId) =>{
+  console.log(typeof(todos));
+  return todos.filter(todo => todo.user_id === userId)
+};
 
-//모델간 관계 설정하기
+//월별 Todos : 날짜 중 year과 month와 일치하는 Todos 데이터(튜플) 전송
+const getTodosByMonth = (todos, year, month) =>{
+  return todos
+  .filter(todo =>parseInt(todo.date.split('-')[1],10) === month&&parseInt(todo.date.split('-')[0],10)=== year )
+  .map(todo => {
+    const day = parseInt(todo.date.split('-')[2],10);
+    return{
+      todo_name:todo.todo_name,
+      day:day
+    };
+  });
+}
 
-//users - 
-
-//db 항목에 추가하기
-db.Todo = TodoModel;
-db.Task = TaskModel;
-db.User = UserModel;
-db.Event = EventModel;
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-module.exports = db;
+//userId에 해당하는 todo를 가져와, getTodosByMonth 실행 후, callback의 argument로 결과값 callback.
+exports.getThisMonthTodos = (userId, year, Month, cb) =>{
+  const userTodos = getTodosByUserId(userId);
+  const userTodosInMonth = getTodosByMonth(userTodos, year, Month);
+  cb(userTodosInMonth);
+}
