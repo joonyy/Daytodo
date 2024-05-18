@@ -77,9 +77,19 @@ let firstDate, lastDate, daysInMonth, firstDayOfMonth, lastDayOfMonth, weekCount
 
 const handleChosenDate = () =>{
   const userId = 1;
+  const year = chosenYear;
   const month = chosenMonth +1;
 
-  axios.get(`/getThisMonthTodos?userId=${userId}&month=${month}`)
+  axios({
+    method:"GET",
+    url:"/getThisMonthTodos",
+    params:{
+      userId:userId,
+      year:year,
+      month:month,
+
+    }
+  })
   .then(res =>{
     const todos = res.data;
     console.log("서버에서 받아온 todos : ",todos);
@@ -133,15 +143,16 @@ const renderCalendar = () =>{ // 달력 출력 함수
         cell.appendChild(cellContent);
         cell.setAttribute('data-date', date); // 날짜 데이터 추가
         cell.addEventListener('click', (event) => {
-          chosenDate = new Date(chosenYear, chosenMonth, parseInt(event.target.getAttribute('data-date')));
-          console.log(`chosenDate is now : ${chosenDate}`);
+          const target = event.target.closest('td');
+          const clickedDate = parseInt(target.getAttribute('data-date'));
+          const url = `/date?year=${chosenYear}&month=${chosenMonth + 1}&date=${clickedDate}`;
+          window.location.href = url;
         });
       }
       row.appendChild(cell);
     }
     calendarBody.appendChild(row);
   }
-
   handleChosenDate();
 }
 
