@@ -5,6 +5,10 @@ const controller = require('../controller/Ctodo')
 //월간 뷰 보여주기+ 해당 월 투두 제목 리스트 가져오기
 router.get('/',controller.month);
 
+//이달의 todo 보여주기
+router.get('/getThisMonthTodos', controller.thisMonth);
+
+
 //주간 뷰 보여주기+ 해당 주 투두 제목 리스트 가져오기
 router.get('/week',controller.week);
 

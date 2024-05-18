@@ -1,11 +1,26 @@
-const {Event, Task, Todo} = require('../models');
+const models = require('../models/index');
 
 //month별로 보여준다!
-exports.month = (req,res) =>{
-  res.render('monthlyView'/* , {data : result} */);
-  //database에서 현재 달에 있는 일정을 각각 칸에 맞추어 제목을 달아줘야 함.
-  //select * where end_date is in (이번달)
-  //res.send()
+exports.month = (req,res)=>{
+  const date = new Date();
+  const userId = 1;//임시 ID값
+  const year = date.getFullYear;
+  const month = date.getMonth + 1;
+  models.getThisMonthTodos(userId, year, month, result =>{
+    console.log(result);
+    res.render('index',{res : result});
+  })
+}
+
+//해당 연,월에 있는 모든 todo 가져오기
+exports.thisMonth = (req,res)=>{
+  const userId = parseInt(req.query.userId);
+  const year = parseInt(req.query.year);
+  const month = parseInt(req.query.month);
+  models.getThisMonthTodos(userId, year, month, result =>{
+    console.log(result);
+    res.send(result);
+  })
 }
 
 //week 별로 보여준다!
