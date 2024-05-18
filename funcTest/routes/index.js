@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/Ctodo')
+const controller = require('../controller/Ctodo');
 
 router.get('/', controller.main);
 router.get('/week',controller.week);
