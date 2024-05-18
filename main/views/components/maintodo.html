@@ -4,52 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>일정 기록</title>
-  <link rel="stylesheet" href="/main/static/styles/NAV-1.css">
   <style>
+    /* Reset CSS */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      overflow: hidden;
     }
+
+    /* Layout */
     .container {
       max-width: 600px;
       margin: 20px auto;
-      margin-bottom: 300px;
+      padding: 0 20px;
     }
-    .vision{
-      display: flex;
-      margin-top: 50px;
-      justify-content: center;
-    }
+
     h1, h2 {
       text-align: center;
     }
+
+    /* Input Form */
     .input-container {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
     }
+
     input[type="text"] {
       flex: 1;
       padding: 10px;
       font-size: 16px;
     }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
-      background-color: black;
+      background-color: #4CAF50;
       color: white;
       cursor: pointer;
     }
+
     button:hover {
-      background-color: black;
+      background-color: #45a049;
     }
+
+    /* Schedule List */
     .schedule-list {
       width: 86.5%;
       list-style-type: none;
       padding: 0;
     }
+
     .schedule-item {
       display: flex;
       align-items: center;
@@ -57,117 +62,68 @@
       border: 1px solid #ccc;
       padding: 5px;
     }
+
     .completed {
       text-decoration: line-through;
-      color: #ccc;
+      color: #888;
     }
-    .delete-button, .edit-button {
+
+    .delete-button {
       margin-left: auto;
     }
+
+    /* Add Schedule Form */
     .add-schedule-button-container {
       display: grid;
       grid-template-columns: auto 50px;
       gap: 10px;
       align-items: center;
     }
+
     .add-schedule-button {
       padding: 10px 20px;
       font-size: 16px;
       text-align: left;
-      background-color: black;
+      background-color: #4CAF50;
       color: white;
       border: none;
       cursor: pointer;
       width: 96%;
     }
+
+    /* Hide the add schedule form by default */
     .hide {
       display: none;
     }
+
+    /* 입력된 일정의 텍스트 강조 */
     .schedule-item span {
       width: 80%;
       font-weight: bold;
     }
+
     .formtext {
       width: 70%;
     }
-    
   </style>
 </head>
 <body>
-  <header>
-    <h1><a href="/d2d.html">DayTodo</a></h1>
-    <a href="#" class="login">Login</a>
-    <div class="login-popup" style="display: none;">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
-        <div class="login-container">
-          <h2>DayTodo</h2>
-          <form>
-            <input type="text" placeholder="아이디 :" name="username" required>
-            <input type="password" placeholder="비밀번호 :" name="password" required>
-            <input type="submit" value="Login" class="login-detail">
-          </form>
-          <p class="signup-q">아직 회원이 아니신가요?</p>
-          <div class="signup-link">
-            <p><a href="#" class="signup-link">회원가입 Click</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Signup Popup -->
-    <div class="signup-popup" style="display: none;">
-      <div class="popup-content">
-        <span class="close-btn" onclick="closeSignupPopup()">&times;</span>
-        <h2>회원가입</h2>
 
-        <form class="signupform" onsubmit="return validateForm()">
-          <label for="username">아이디:</label>
-          <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]{4,12}" title="영어와 숫자만 입력 가능하며, 4글자 이상 12글자 이하로 입력하세요." required>
-          
-          <label for="password">비밀번호:</label>
-          <input type="password" id="password" name="password" pattern=".{6,}" title="6자 이상 입력하세요." required>
-          
-          <label for="nickname">닉네임:</label>
-          <input type="text" id="nickname" name="nickname" pattern=".{2,8}" title="2글자 이상 8글자 이하로 입력하세요." required>
-          
-          <input type="submit" value="가입하기">
-        </form>
-      </div>
-    </div>
-  </header>
-  <aside class="side-bar">
-    <section class="side-bar__icon-box">
-      <section class="side-bar__icon-1">
-        <div></div>
-        <div></div>
-        <div></div>
-      </section>
-    </section>
-    <ul>
-      <li>
-        <a href="/d2d.html"><i class="fa-solid fa-cat"></i>Create Todo</a>
-      </li>
-      <li>
-        <a href="#">View Todo</a>
-      </li>
-      <li>
-        <a href="#">My page</a>
-      </li>
-    </ul>
-  </aside>
-  <div class="container">
-    <h2 id="currentDate" class="vision"></h2>
-    <div id="scheduleList" class="schedule-list"></div>
-    <div class="add-schedule-button-container">
-      <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
-      <br>
-      <form id="addScheduleForm" class="hide">
-        <input type="text" id="eventName" class="formtext" placeholder="일정을 입력하세요">
-        <button type="submit">일정 추가</button>
-      </form>
-    </div>
+<div class="container">
+  <h1>D2D</h1>
+  <h2 id="currentDate"></h2> <!-- 현재 날짜를 표시할 h2 요소 추가 -->
+  <div id="scheduleList" class="schedule-list">
+    <!-- 여기에 일정이 표시됩니다 -->
   </div>
+  <div class="add-schedule-button-container">
+    <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
+    <br> <!-- 여기에 br 태그 추가 -->
+    <form id="addScheduleForm" class="hide">
+      <input type="text" id="eventName" class="formtext" placeholder="일정을 입력하세요">
+      <button type="submit">일정 추가</button>
+    </form>
+  </div>
+</div>
 
   <script>
     function getSelectedDate() {
