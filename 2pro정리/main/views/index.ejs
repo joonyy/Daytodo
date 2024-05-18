@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayTodo</title>
+    <link rel="stylesheet" href="/main/static/styles/index.css">
+    <link rel="stylesheet" href="/main/static/styles/nav.css">
+    <link rel="stylesheet" href="/main/static/styles/createtodo.css">
+    <link rel="stylesheet" href="/main/static/styles/mypage.css">
+</head>
+<body>
+    <%- include ('nav.ejs') -%>
+    <!-- nav종료 -->    <!-- CreateTodo.ejs 경로연결이안됨 -->
+    <%- include ('mypage.ejs') -%>
+    <!-- mypage종료 -->
+
+    <!-- 선택된 달의 달력 표시 -->
+    <div class="calendar">
+        <div class="calendar-header">
+            <button class="prev-month">&laquo;</button>
+            <h2 class="month-year"></h2>
+            <button class="next-month">&raquo;</button>
+        </div>
+        <table class="calendar-grid">
+            <thead>
+                <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="/main/static/js/index.js"></script>
+    <script src="/main/static/js/NAV.js"></script>
+    <script src="/main/static/js/mypage.js"></script>
+    <script src="/main/static/js/createtodo.js"></script>
+</body>
+</html>
