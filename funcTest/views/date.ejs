@@ -45,15 +45,6 @@
       document.getElementById("todoDescriptionInput").value = "";
       
       // Axios를 사용하여 POST 요청 보내기
-      axios({
-        method: "POST",
-        url: "/addTodo",
-        data: {
-          todoName: todoNameInput,
-          description: todoDescriptionInput,
-          date: "<%= date %>", // 날짜를 여기에 추가하거나, 필요하면 동적으로 가져와서 추가하세요.
-        }
-      });
     }
   </script>
 </body>
