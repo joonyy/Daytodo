@@ -1,0 +1,38 @@
+<div id="mypagePopup" class="mypopup">
+    <div class="mypopup-content">
+        <span class="myclose-btn" onclick="closeMypagePopup()">&times;</span>
+        <h2>My Page</h2>
+        <ul>
+            <li><a href="#" id="changePasswordLink">비밀번호 변경</a></li>
+            <br>
+            <li><a href="#" id="withdrawLink">회원 탈퇴</a></li>
+        </ul>
+    </div>
+</div>
+<div id="changePasswordPopup" class="mypopup">
+    <div class="mypopup-content">
+        <span class="myclose-btn" onclick="closeChangePasswordPopup()">&times;</span>
+        <h2>비밀번호 변경</h2>
+        <form id="changePasswordForm">
+            <label for="currentPassword">현재 비밀번호:</label><br>
+            <input type="password" id="currentPassword" name="currentPassword"><br><br>
+            <label for="newPassword">새로운 비밀번호:</label><br>
+            <input type="password" id="newPassword" name="newPassword"><br><br>
+            <label for="confirmNewPassword">비밀번호 확인:</label><br>
+            <input type="password" id="confirmNewPassword" name="confirmNewPassword"><br><br>
+            <button type="submit" class="submitpw">변경하기</button>
+        </form>
+    </div>
+</div>
+<div id="withdrawPopup" class="mypopup">
+    <div class="mypopup-content">
+        <span class="myclose-btn" onclick="closeWithdrawPopup()">&times;</span>
+        <h2>회원 탈퇴</h2>
+        <form id="withdrawForm">
+            <div class="mynotice-box">
+                <p class="mynotice-text">계정을 탈퇴하시겠습니까?</p>
+                <button type="button" onclick="showConfirmation()" class="animated-button">탈퇴하기</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,100 +1,69 @@
-// 달력 컴포넌트를 초기화하는 함수
-function initCalendar() {
-    const calendar = document.querySelector('.calendar');
-    const header = calendar.querySelector('.calendar-header');
-    const grid = calendar.querySelector('.calendar-grid');
-    const monthYear = header.querySelector('.month-year');
-    const prevBtn = header.querySelector('.prev-month');
-    const nextBtn = header.querySelector('.next-month');
-  
-    let currentDate = new Date(); // 현재 날짜 가져오기
-    let currentMonth = currentDate.getMonth();
-    let currentYear = currentDate.getFullYear();
-  
-    // 달력 헤더에 현재 연도와 월 표시
-    function updateHeader() {
-      const options = { month: 'long', year: 'numeric' };
-      monthYear.textContent = currentDate.toLocaleDateString('en-US', options);
-    }
-  
-    // 이전 달로 이동
-    prevBtn.addEventListener('click', () => {
-      currentMonth--;
-      if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
-      }
-      currentDate = new Date(currentYear, currentMonth);
-      renderCalendar();
-    });
-  
-    // 다음 달로 이동
-    nextBtn.addEventListener('click', () => {
-      currentMonth++;
-      if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-      }
-      currentDate = new Date(currentYear, currentMonth);
-      renderCalendar();
-    });
-  
-    // 달력 그리기
-    function renderCalendar() {
-      updateHeader();
-  
-      // 이전에 그려진 날짜 삭제
-      grid.innerHTML = '';
-  
-      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  
-      // 해당 달의 첫 번째 날의 요일 가져오기
-      const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-  
-      // 날짜 추가
-      let dayIndex = 1;
-      let weeksRendered = 0;
-      for (let i = 0; i < 6; i++) { // 최대 6주까지 표시
-        const weekRow = document.createElement('tr');
-        let rendered = false; // 날짜를 하나 이상 렌더링했는지 여부
-        for (let j = 0; j < 7; j++) {
-          const day = document.createElement('td');
-          if (i === 0 && j < firstDayOfMonth) {
-            // 이번 달 시작일 이전의 빈 칸
-            weekRow.appendChild(day);
-          } else if (dayIndex <= daysInMonth) {
-            // 이번 달 날짜 표시
-            day.textContent = dayIndex;
-            dayIndex++;
-            weekRow.appendChild(day);
-            rendered = true;
-          } else {
-            // 다음 달 시작일 이후의 빈 칸
-            weekRow.appendChild(day);
-          }
-          day.classList.add('calendar-day');
-          if (currentDate.getMonth() === new Date().getMonth() && day.textContent == new Date().getDate()) {
-            day.classList.add('today'); // 오늘 날짜는 강조
-          }
-        }
-        if (rendered) {
-          grid.appendChild(weekRow);
-          weeksRendered++;
-        }
-      }
-  
-      // 마지막 줄이 모두 빈 칸이라면 삭제
-      if (weeksRendered === 0) {
-        grid.innerHTML = '';
-      }
-    }
-  
-    // 초기화
-    renderCalendar();
+function getSelectedDate() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('date');
   }
-  
-  // 페이지 로드 시 달력 컴포넌트 초기화
-  window.addEventListener('DOMContentLoaded', () => {
-    initCalendar();
+
+  function displayCurrentDate() {
+    const selectedDate = getSelectedDate();
+    const currentDate = new Date(selectedDate);
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+    document.getElementById('currentDate').textContent = formattedDate;
+  }
+
+  displayCurrentDate();
+
+  document.getElementById("toggleAddScheduleForm").addEventListener("click", function () {
+    document.getElementById("addScheduleForm").classList.toggle("hide");
+
+    if (!document.getElementById("addScheduleForm").classList.contains("hide")) {
+      document.getElementById("eventName").focus();
+    }
   });
-  
+
+  document.getElementById("addScheduleForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    const eventName = document.getElementById("eventName").value.trim();
+
+    if (eventName !== "") {
+      const scheduleItem = document.createElement("div");
+      const checkBox = document.createElement("input");
+      checkBox.type = "checkbox";
+      checkBox.addEventListener("change", function () {
+        if (this.checked) {
+          scheduleText.classList.add("completed");
+        } else {
+          scheduleText.classList.remove("completed");
+        }
+      });
+      const scheduleText = document.createElement("span");
+      scheduleText.textContent = eventName;
+      scheduleItem.appendChild(checkBox);
+      scheduleItem.appendChild(scheduleText);
+      scheduleItem.className = "schedule-item";
+
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "삭제";
+      deleteButton.className = "delete-button";
+      deleteButton.addEventListener("click", function () {
+        scheduleItem.remove();
+      });
+      scheduleItem.appendChild(deleteButton);
+
+      const editButton = document.createElement("button"); // Add Edit Button
+      editButton.textContent = "수정"; // Edit Button Text
+      editButton.className = "edit-button"; // Edit Button Class
+      editButton.addEventListener("click", function () { // Edit Button Click Event
+        const newText = prompt("일정을 수정하세요", scheduleText.textContent); // Prompt for new text
+        if (newText !== null) {
+          scheduleText.textContent = newText; // Update schedule text
+        }
+      });
+      scheduleItem.appendChild(editButton); // Append Edit Button
+
+      const scheduleList = document.getElementById("scheduleList");
+      scheduleList.insertBefore(scheduleItem, scheduleList.firstChild);
+
+      document.getElementById("eventName").value = "";
+    }
+  });

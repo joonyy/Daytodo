@@ -1,181 +1,46 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <title>D2D</title>  
-  <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-    table {
-        border-collapse: collapse;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .dates {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    th, td {
-      border: 1px solid black;
-      text-align: center;
-      padding: 10px;
-  }
-    td {
-      top:5px;
-      left:5px;
-      position: relative;
-      height: 100px;
-    }
-    td:hover {
-      border: 2px solid red;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .btn-container {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayTodo</title>
+    <link rel="stylesheet" href="../static/styles/index.css">
+    <link rel="stylesheet" href="../static/styles/nav.css">
+    <link rel="stylesheet" href="../static/styles/createtodo.css">
+    <link rel="stylesheet" href="../static/styles/mypage.css">
 </head>
 <body>
-<div class="btn-container">
-  <button id="prevMonth" onclick="previousMonth()">이전 달</button>
-  <h2 class="yearMonth"></h2>
-  <button id="nextMonth" onclick="nextMonth()">다음 달</button>
-</div>
-<table>
-<thead>
-<tr>
-  <th>일</th>
-  <th>월</th>
-  <th>화</th>
-  <th>수</th>
-  <th>목</th>
-  <th>금</th>
-  <th>토</th>
-</tr>
-</thead>
-<tbody id="calendar-body">
-  
-</tbody>
-</table>
+    <%- include ('nav.ejs') -%>
+    <!-- nav종료 -->    <!-- CreateTodo.ejs 경로연결이안됨 -->
+    <%- include ('mypage.ejs') -%>
+    <!-- mypage종료 -->
 
-<script>
-let chosenDate = new Date(); // 선택된 날짜 : (오늘 날짜 :default)
-let chosenYear = chosenDate.getFullYear(); // 선택된 해
-let chosenMonth = chosenDate.getMonth();//선택된 달(0 : 1월, 1:2월 , ...)
-let firstDate, lastDate, daysInMonth, firstDayOfMonth, lastDayOfMonth, weekCount;
-
-const handleChosenDate = () =>{
-  const userId = 1;
-  const year = chosenYear;
-  const month = chosenMonth +1;
-
-  axios({
-    method:"GET",
-    url:"/getThisMonthTodos",
-    params:{
-      userId:userId,
-      year:year,
-      month:month,
-
-    }
-  })
-  .then(res =>{
-    const todos = res.data;
-    console.log("서버에서 받아온 todos : ",todos);
-
-    //모든 td를 선택한다.
-    const tdElements = document.querySelectorAll('td');
-
-    //받아온 일정이 반복하고, 
-    todos.forEach(todo =>{
-      const targetTd = Array.from(tdElements).find(td => parseInt(td.getAttribute('data-date')) === todo.day);
-      //날짜와 일치하는 속성이 있다면
-      if(targetTd){
-        
-        const todoText = document.createTextNode(todo.todo_name);
-        const todoDiv = document.createElement('div');
-        //해당 날짜에 일정을 추가
-        todoDiv.appendChild(todoText);
-        targetTd.appendChild(todoDiv);
-      }
-    });
-  })
-  .catch(err =>{
-    console.error("todos를 받지 못했어요 : ",err);
-  })
-}
-
-const renderCalendar = () =>{ // 달력 출력 함수
-  firstDate = new Date(chosenYear, chosenMonth, 1); // 선택된 달 첫날. 일 정보
-  lastDate = new Date(chosenYear, chosenMonth + 1 , 0); // 선택된 달 마지막 날 일 정보
-  daysInMonth = lastDate.getDate(); // 이번달 일 수(마지막 일)
-  firstDayOfMonth = firstDate.getDay(); // 첫째 날의 요일 출력. (0 : 일요일, 1 : 월요일)
-  lastDayOfMonth = lastDate.getDay(); // 마지막 날의 요일 출력.
-  weekCount = (firstDayOfMonth+daysInMonth)%7 === 0? Math.floor((firstDayOfMonth+daysInMonth)/7) : Math.floor(((firstDayOfMonth+daysInMonth)/7))+ 1;
-  
-  // 선택된 연도와 월 표시하기
-  document.querySelector('.yearMonth').textContent = `${chosenYear} 년 ${chosenMonth + 1} 월`;
-
-  let calendarBody = document.getElementById('calendar-body');
-  calendarBody.innerHTML = '';
-
-  let date = 0;
-  for(let i = 0; i < weekCount; i++){
-    let row = document.createElement("tr");
-    for(let j = 1; j <= 7; j++){
-      let cell = document.createElement("td");
-      if(!(i * 7 + j < firstDayOfMonth + 1 || date >= daysInMonth)){
-        date++;
-        let cellContent = document.createElement("div");
-        cellContent.textContent = date;
-        cellContent.classList.add("dates");
-        cell.appendChild(cellContent);
-        cell.setAttribute('data-date', date); // 날짜 데이터 추가
-        cell.addEventListener('click', (event) => {
-          const target = event.target.closest('td');
-          const clickedDate = parseInt(target.getAttribute('data-date'));
-          const url = `/date?year=${chosenYear}&month=${chosenMonth + 1}&date=${clickedDate}`;
-          window.location.href = url;
-        });
-      }
-      row.appendChild(cell);
-    }
-    calendarBody.appendChild(row);
-  }
-  handleChosenDate();
-}
-
-const previousMonth = () =>{
-  chosenMonth--;
-  if(chosenMonth < 0){
-    chosenMonth = 11;
-    chosenYear--;
-  }
-
-  renderCalendar();
-}
-
-const nextMonth = () => {
-  chosenMonth++;
-  if (chosenMonth > 11) {
-    chosenMonth = 0;
-    chosenYear++;
-  }
-  renderCalendar();
-}
-//최초 입장 시 달력 출력.
-renderCalendar();
-</script>
+    <!-- 선택된 달의 달력 표시 -->
+    <div class="calendar">
+        <div class="calendar-header">
+            <button class="prev-month" onclick="previousMonth()">&laquo;</button>
+            <h2 class="month-year"></h2>
+            <button class="next-month" onclick="nextMonth()">&raquo;</button>
+        </div>
+        <table class="calendar-grid">
+            <thead>
+                <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="../static/js/index.js"></script>
+    <script src="../static/js/nav.js"></script>
+    <script src="../static/js/mypage.js"></script>
+    <script src="../static/js/createtodo.js"></script>
 </body>
 </html>
