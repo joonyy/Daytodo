@@ -60,21 +60,18 @@ const renderCalendar = () => {
 
   grid.innerHTML = '';
 
-  const daysInMonth = new Date(chosenYear, chosenMonth + 1, 0).getDate();
-  const firstDayOfMonth = new Date(chosenYear, chosenMonth, 1).getDay();
-
   let dayIndex = 0;
   for (let i = 0; i < weekCount; i++) {
       const row = document.createElement('tr');
       for (let j = 1; j <= 7; j++) {
           let cell = document.createElement('td');
-          if (!(i * 7 + j < firstDayOfMonth + 1 || date >= daysInMonth)){
+          if (!(i * 7 + j < firstDayOfMonth + 1 || dayIndex >= daysInMonth)){
             dayIndex++;
             let cellContent = document.createElement("div");
             cellContent.textContent = dayIndex;
             cellContent.classList.add("dates");
             cell.appendChild(cellContent);
-            cell.setAttribute('data-date', date); // 날짜 데이터 추가
+            cell.setAttribute('data-date', dayIndex); // 날짜 데이터 추가
             cell.addEventListener('click',(event)=>{
               const target = event.target.closest('td');
               const clickedDate = parseInt(target.getAttribute('data-date'));
@@ -82,11 +79,7 @@ const renderCalendar = () => {
               window.location.href = url;
             });
           }
-          rouw.appendChild(cell);
-          day.classList.add('calendar-day');
-          if (chosenDate.getMonth() === new Date().getMonth() && day.textContent == new Date().getDate()) {
-              day.classList.add('today');
-          }
+          row.appendChild(cell);
       }
       grid.appendChild(row);
   }

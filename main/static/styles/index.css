@@ -13,7 +13,7 @@ table {
 }
 
 .dates {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
 }
@@ -36,7 +36,7 @@ td {
     top: 5px;
     left: 5px;
     position: relative;
-    height: 80px;
+    height: 100px;
     /* 이전에 100px였던 높이를 줄임 */
 }
 
