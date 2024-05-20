@@ -45,6 +45,9 @@ exports.addTodos = (req,res)=>{
   const data = req.body;
   console.log(data); //새로 추가한 데이터 예상.
   //models페이지에서 db에 data 입력해주는 로직 구현 후 작성하기.
+  models.addThisDaysTodos(userId, stringDate, result=>{
+
+  })
   
 }
 
