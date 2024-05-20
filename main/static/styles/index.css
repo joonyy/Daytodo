@@ -2,22 +2,33 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
+
 table {
-    width: 90%; /* 테이블 가로폭 지정 */
-    margin: 20px auto; /* 위 여백 추가 및 가운데 정렬 */
-    background-color: white; /* 테이블 배경색 지정 */
+    width: 90%;
+    /* 테이블 가로폭 지정 */
+    margin: 20px auto;
+    /* 위 여백 추가 및 가운데 정렬 */
+    background-color: white;
+    /* 테이블 배경색 지정 */
 }
+
 .dates {
-  position: absolute;
-  top: 0;
-  left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
-th, td {
-    border: 1px solid #ddd; /* 테두리 추가 */
-    padding: 8px; /* 셀 안쪽 여백 추가 */
-    text-align: center; /* 셀 텍스트 가운데 정렬 */
-  }
-  td {
+
+th,
+td {
+    border: 1px solid #ddd;
+    /* 테두리 추가 */
+    padding: 8px;
+    /* 셀 안쪽 여백 추가 */
+    text-align: center;
+    /* 셀 텍스트 가운데 정렬 */
+}
+
+td {
     color: black;
     border: 1px solid white;
     border-radius: 10px;
@@ -25,11 +36,14 @@ th, td {
     top: 5px;
     left: 5px;
     position: relative;
-    height: 80px; /* 이전에 100px였던 높이를 줄임 */
+    height: 100px;
+    /* 이전에 100px였던 높이를 줄임 */
 }
+
 td:hover {
-  border: 2px solid red;
+    border: 2px solid red;
 }
+
 th {
     color: white;
     background-color: black;
@@ -37,20 +51,38 @@ th {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .btn-container {
-  display: flex;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  justify-content: center;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
 }
 
-.before , .after {
-    
+.calendar {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.month-year {
+    text-align: center;
+}
+
+.prev-month,
+.next-month {
     color: white;
     background-color: black;
     border: 1px solid white;
     border-radius: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
+.calendar-header {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+}
