@@ -50,10 +50,3 @@ exports.addTodos = (req,res)=>{
   })
   
 }
-
-exports.createTodo = (req,res)=>{
-  const date = new Date().getDate();
-  const year = date.getFullYear;
-  const month = date.getMonth + 1;
-  res.render('date',{"year":year, "month":month, "date":date});
-}

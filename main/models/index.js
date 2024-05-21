@@ -28,6 +28,7 @@ const getTodosByMonth = (todos, year, month) =>{
 }
 
 //userId에 해당하는 todo를 가져와, getTodosByMonth 실행 후, callback의 argument로 결과값 callback.
+//해당 월에 있는 모든 todos 가져오기
 exports.getThisMonthTodos = (userId, year, Month, cb) =>{
   const userTodos = getTodosByUserId(userId);
   const userTodosInMonth = getTodosByMonth(userTodos, year, Month);
@@ -36,7 +37,7 @@ exports.getThisMonthTodos = (userId, year, Month, cb) =>{
 
 //userId와 해당 날짜의 todos를 가져온다.
 //제목, 내용, 완료여부 세가지 항목만 가져온다.
-exports.getThisDaysTodos = (userId, stringDate,cb)=>{
+exports.getThisDaysTodos = (userId, stringDate, cb)=>{
   const userTodos = getTodosByUserId(userId);
   const result = userTodos
   .filter(todo => todo.date === stringDate)
@@ -50,6 +51,9 @@ exports.getThisDaysTodos = (userId, stringDate,cb)=>{
   console.log(result);
   cb(result);
 }
+
+//json 파일 입력.
+//새로운
 
 exports.addThisDaysTodos = (userId, stringDate, cb)=>{
   //새로운 todos 생성
