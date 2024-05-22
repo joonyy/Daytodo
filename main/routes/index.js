@@ -16,4 +16,8 @@ router.get('/getThisMonthTodos', controller.thisMonth);
 
 //todo 추가하기 : date페이지에서 새로운 todos를 추가합니다.
 router.post('/addTodos',controller.addTodos);
+
+router.patch('/updateTodos', controller.updateTodos);
+
+router.delete('/deleteTodos', controller.deleteTodos);
 module.exports = router;
