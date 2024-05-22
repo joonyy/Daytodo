@@ -1,34 +1,32 @@
-{
-  "users":[
-    {
-      "user_id":1,
-      "email":"blackhound97@gmail.com",
-      "username": "joony",
-      "user_pw" : "12345678"
-    },
-    {
-      "user_id":2,
-      "email":"dongdong@gmail.com",
-      "username": "dongMyong",
-      "user_pw" : "23456789"
-    },
-    {
-      "user_id":3,
-      "email":"joonWon97@gmail.com",
-      "username": "joonwon",
-      "user_pw" : "34567890"
-    },
-    {
-      "user_id":4,
-      "email":"joonTwo97@gmail.com",
-      "username": "joonlee",
-      "user_pw" : "12345678"
-    },
-    {
-      "user_id":5,
-      "email":"joonThree97@gmail.com",
-      "username": "joonsam",
-      "user_pw" : "12345678"
-    }
-  ]
-}
+[
+  {
+    "user_id":1,
+    "email":"blackhound97@gmail.com",
+    "username": "joony",
+    "user_pw" : "12345678"
+  },
+  {
+    "user_id":2,
+    "email":"dongdong@gmail.com",
+    "username": "dongMyong",
+    "user_pw" : "23456789"
+  },
+  {
+    "user_id":3,
+    "email":"joonWon97@gmail.com",
+    "username": "joonwon",
+    "user_pw" : "34567890"
+  },
+  {
+    "user_id":4,
+    "email":"joonTwo97@gmail.com",
+    "username": "joonlee",
+    "user_pw" : "12345678"
+  },
+  {
+    "user_id":5,
+    "email":"joonThree97@gmail.com",
+    "username": "joonsam",
+    "user_pw" : "12345678"
+  }
+]

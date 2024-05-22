@@ -6,7 +6,7 @@ function getSelectedDate() {
   function displayCurrentDate() {
     const selectedDate = getSelectedDate();
     const currentDate = new Date(selectedDate);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
     document.getElementById('currentDate').textContent = formattedDate;
   }
@@ -23,6 +23,17 @@ function getSelectedDate() {
 
   document.getElementById("addScheduleForm").addEventListener("submit", function (event) {
     event.preventDefault();
+    // axios 요청.
+    // axios({
+    //   method:"POST",
+    //   url:"/addTodos",
+    //   data:{
+    //     "user_id": 1,//임시
+    //     "date"://url에 params로 적혀있는 놈들
+    //     "todo_name"://입력한 submit 내용
+    //     "description"://입력한 submit 내용
+    //   }
+    // })
     const eventName = document.getElementById("eventName").value.trim();
 
     if (eventName !== "") {
@@ -46,6 +57,13 @@ function getSelectedDate() {
       deleteButton.textContent = "삭제";
       deleteButton.className = "delete-button";
       deleteButton.addEventListener("click", function () {
+        //axios.delete 요청
+        //axios.delete('/deleteTodo', {
+        //  data:{
+          // todos_id : ~~~,
+          // user_id : ~~~
+        // }
+        // })
         scheduleItem.remove();
       });
       scheduleItem.appendChild(deleteButton);
@@ -54,6 +72,7 @@ function getSelectedDate() {
       editButton.textContent = "수정"; // Edit Button Text
       editButton.className = "edit-button"; // Edit Button Class
       editButton.addEventListener("click", function () { // Edit Button Click Event
+        //editbutton에서 axios 요청 + 이후 
         const newText = prompt("일정을 수정하세요", scheduleText.textContent); // Prompt for new text
         if (newText !== null) {
           scheduleText.textContent = newText; // Update schedule text
