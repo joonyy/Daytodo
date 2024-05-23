@@ -62,7 +62,6 @@ exports.addTodos = (req,res)=>{
 exports.updateTodos = (req,res)=>{
   const data = req.body
   models.updateThisDaysTodos(data,result =>{
-
   })
 }
 
