@@ -1,83 +1,82 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .container {
-    max-width: 600px;
-    margin: 20px auto;
-    margin-bottom: 300px;
-  }
-  .vision{
-    display: flex;
-    margin-top: 50px;
-    justify-content: center;
-  }
-  h1, h2 {
-    text-align: center;
-  }
-  .input-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: black;
-  }
-  .schedule-list {
-    width: 86.5%;
-    list-style-type: none;
-    padding: 0;
-  }
-  .schedule-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    padding: 5px;
-  }
-  .completed {
-    text-decoration: line-through;
-    color: #ccc;
-  }
-  .delete-button, .edit-button {
-    margin-left: auto;
-  }
-  .add-schedule-button-container {
-    display: grid;
-    grid-template-columns: auto 50px;
-    gap: 10px;
-    align-items: center;
-  }
-  .add-schedule-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: left;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 96%;
-  }
-  .hide {
-    display: none;
-  }
-  .schedule-item span {
-    width: 80%;
-    font-weight: bold;
-  }
-  .formtext {
-    width: 70%;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  margin-bottom: 300px;
+}
+.vision {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+}
+h1, h2 {
+  text-align: center;
+}
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background-color: darkgray;
+}
+.schedule-list {
+  width: 86.5%;
+  list-style-type: none;
+  padding: 0;
+}
+.schedule-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+.completed {
+  text-decoration: line-through;
+  color: #ccc;
+}
+.delete-button, .edit-button {
+  margin-left: auto;
+}
+.add-schedule-button-container {
+  display: grid;
+  grid-template-columns: auto 50px;
+  gap: 10px;
+  align-items: center;
+}
+.add-schedule-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: left;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 96%;
+}
+
+
+.schedule-item span {
+  width: 80%;
+  font-weight: bold;
+}
+.formtext {
+  width: 70%;
+}

@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 table {
@@ -22,12 +23,18 @@ th,
 td {
     border: 1px solid #ddd;
     /* 테두리 추가 */
-    padding: 8px;
+    padding: 5px;
     /* 셀 안쪽 여백 추가 */
+<<<<<<< HEAD
     text-align: center;
+=======
+>>>>>>> aa7ebc84d1ae70428251623322f534b8eff6f624
 }
 
 td {
+    
+    width: 150px;
+    height: 80px;
     color: black;
     border: 1px solid white;
     border-radius: 10px;
@@ -35,8 +42,11 @@ td {
     top: 5px;
     left: 5px;
     position: relative;
-    height: 100px;
-    /* 이전에 100px였던 높이를 줄임 */
+    text-overflow: ellipsis; /* 내용이 넘칠 경우 '...'로 표시 */
+    word-break: break-all; /* 단어를 강제로 줄 바꿈 처리 */
+    overflow: hidden;
+    white-space: nowrap;
+    
 }
 
 td:hover {

@@ -1,0 +1,66 @@
+.calendar-grid td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 80px; /* Adjusted height */
+    cursor: pointer;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 5px; /* 셀 안쪽 여백 추가 */
+}
+
+td {
+    width: 150px;
+    height: 80px;
+    color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 5px;
+    left: 5px;
+    position: relative;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+td:hover {
+    border: 2px solid red;
+}
+
+th {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.prev-week-btn,
+.next-week-btn {
+    color: white;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 20px; /* Adjusted border radius */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.calendar {
+    margin-top: 50px;
+    text-align: center;
+}
