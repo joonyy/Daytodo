@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="../static/styles/index.css">
+<link rel="stylesheet" href="../static/styles/nav.css">
+<link rel="stylesheet" href="../static/styles/date.css">
+<link rel="stylesheet" href="../static/styles/mypage.css">
+<%- include ('nav.ejs') -%>
+<!-- nav종료 -->
+<%- include ('mypage.ejs') -%>
+<!-- mypage종료 -->
+
+<!-- 선택된 달의 달력 표시 -->
+<div class="calendar">
+    <div class="calendar-header">
+        <button class="prev-week" onclick="previousMonth()">&laquo;</button>
+        <h2 class="week-range"></h2>
+        <button class="next-week" onclick="nextMonth()">&raquo;</button>
+    </div>
+    <table class="calendar-grid">
+        <thead>
+            <tr class="week-dates">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="/static/js/NAV.js"></script>
+<script src="/static/js/mypage.js"></script>
+<script src="/static/js/date.js"></script>
+<script src="/static/js/week.js"></script>

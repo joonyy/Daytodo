@@ -26,6 +26,10 @@ exports.week = (req,res)=>{
   res.render('week');
 }
 
+exports.viewTodo = (req,res)=>{
+  res.render('viewtodo');
+}
+
 exports.date = (req,res)=>{
   const userId = 1;//임시 ID값
   const {year, month, date} =req.query;
@@ -56,7 +60,10 @@ exports.addTodos = (req,res)=>{
 
 //todos 수정하기
 exports.updateTodos = (req,res)=>{
-  
+  const data = req.body
+  models.updateThisDaysTodos(data,result =>{
+
+  })
 }
 
 //todos 삭제하기

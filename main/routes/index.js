@@ -14,6 +14,8 @@ router.get('/date',controller.date);
 //getThisMonthTodos : 이번해 + 이번달의 todo 가져오기. 
 router.get('/getThisMonthTodos', controller.thisMonth);
 
+router.get('/viewtodo',controller.viewTodo);
+
 //todo 추가하기 : date페이지에서 새로운 todos를 추가합니다.
 router.post('/addTodos',controller.addTodos);
 
