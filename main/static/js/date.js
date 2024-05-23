@@ -2,13 +2,8 @@
 
 function getSelectedDate() {
   const urlParams = new URLSearchParams(window.location.search);
-  const selectedDate = urlParams.get('date');
-  
-  // 만약 선택된 날짜가 없다면 오늘 날짜를 반환
-  return selectedDate ? selectedDate : new Date().toISOString().slice(0, 10);
+  return urlParams.get('date');
 }
-
-// 현재 날짜 표시 함수
 function displayCurrentDate() {
   const selectedDate = getSelectedDate();
   const currentDate = new Date(selectedDate);
@@ -27,9 +22,38 @@ document.getElementById("toggleAddScheduleForm").addEventListener("click", funct
   }
 });
 
+function displayCurrentDate() {
+  const selectedDate = getSelectedDate();
+  const currentDate = new Date(selectedDate);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+  document.getElementById('currentDate').textContent = formattedDate;
+}
+
+displayCurrentDate();
+
+document.getElementById("toggleAddScheduleForm").addEventListener("click", function () {
+  document.getElementById("addScheduleForm").classList.toggle("hide");
+
+  if (!document.getElementById("addScheduleForm").classList.contains("hide")) {
+    document.getElementById("eventName").focus();
+  }
+});
+
 document.getElementById("addScheduleForm").addEventListener("submit", function (event) {
   event.preventDefault();
-  const eventName = document.getElementById("eventName").value.trim();
+  // axios 요청.
+  // axios({
+  //   method:"POST",
+  //   url:"/addTodos",
+  //   data:{
+  //     "user_id": 1,//임시
+  //     "date"://url에 params로 적혀있는 놈들
+  //     "todo_name"://입력한 submit 내용
+  //     "description"://입력한 submit 내용
+  //   }
+  // })
+const eventName = document.getElementById("eventName").value.trim();
 
   if (eventName !== "") {
     const scheduleItem = document.createElement("div");
@@ -48,24 +72,32 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
     scheduleItem.appendChild(scheduleText);
     scheduleItem.className = "schedule-item";
 
-    const editButton = document.createElement("button"); // 수정 버튼 추가
-    editButton.textContent = "수정"; // 수정 버튼 텍스트
-    editButton.className = "edit-button"; // 수정 버튼 클래스
-    editButton.addEventListener("click", function () { // 수정 버튼 클릭 이벤트
-      const newText = prompt("일정을 수정하세요", scheduleText.textContent); // 새로운 텍스트를 입력 받음
-      if (newText !== null) {
-        scheduleText.textContent = newText; // 일정 텍스트 업데이트
-      }
-    });
-    scheduleItem.appendChild(editButton); // 수정 버튼 추가
-
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "삭제";
     deleteButton.className = "delete-button";
     deleteButton.addEventListener("click", function () {
+      //axios.delete 요청
+      //axios.delete('/deleteTodo', {
+      //  data:{
+        // todos_id : ~~~,
+        // user_id : ~~~
+      // }
+      // })
       scheduleItem.remove();
     });
     scheduleItem.appendChild(deleteButton);
+
+    const editButton = document.createElement("button"); // Add Edit Button
+    editButton.textContent = "수정"; // Edit Button Text
+    editButton.className = "edit-button"; // Edit Button Class
+    editButton.addEventListener("click", function () { // Edit Button Click Event
+      //editbutton에서 axios 요청 + 이후 
+      const newText = prompt("일정을 수정하세요", scheduleText.textContent); // Prompt for new text
+      if (newText !== null) {
+        scheduleText.textContent = newText; // Update schedule text
+      }
+    });
+    scheduleItem.appendChild(editButton); // Append Edit Button
 
     const scheduleList = document.getElementById("scheduleList");
     scheduleList.insertBefore(scheduleItem, scheduleList.firstChild);

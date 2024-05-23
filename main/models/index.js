@@ -1,13 +1,23 @@
-const usersData = require('./Users.json');
-const users = usersData.users;
+const path = require('path');
+const fs = require('fs');
 
-const tagsData = require('./Tags.json');
-const tags = tagsData.tags;
+const usersPath = path.join(__dirname, 'Users.json');
+const tagsPath = path.join(__dirname, 'Tags.json');
+const todosPath = path.join(__dirname, 'Todos.json');
 
-const todosData = require('./Todos.json');
-const todos = todosData.todos;
+const users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+const tags = JSON.parse(fs.readFileSync(tagsPath, 'utf8'));
+const todos = JSON.parse(fs.readFileSync(todosPath, 'utf8'));
 
-const fs = require('fs'); //data 저장하기 위함.
+// 데이터베이스(.json파일)에 저장하는 함수
+const saveToFile = async (data, filePath) =>{
+  try{
+    await fs.writeFile(filePath, JSON.stringify(data,null,2));
+  }catch(err){
+    console.error('파일을 쓰다가 오류가 생겼습니다 : ', err);
+    throw err;
+  }
+};
 
 //userId 에 해당하는 todos 테이블을 가져오는 함수
 const getTodosByUserId = (userId) =>{
@@ -28,6 +38,7 @@ const getTodosByMonth = (todos, year, month) =>{
 }
 
 //userId에 해당하는 todo를 가져와, getTodosByMonth 실행 후, callback의 argument로 결과값 callback.
+//해당 월에 있는 모든 todos 가져오기
 exports.getThisMonthTodos = (userId, year, Month, cb) =>{
   const userTodos = getTodosByUserId(userId);
   const userTodosInMonth = getTodosByMonth(userTodos, year, Month);
@@ -36,7 +47,7 @@ exports.getThisMonthTodos = (userId, year, Month, cb) =>{
 
 //userId와 해당 날짜의 todos를 가져온다.
 //제목, 내용, 완료여부 세가지 항목만 가져온다.
-exports.getThisDaysTodos = (userId, stringDate,cb)=>{
+exports.getThisDaysTodos = (userId, stringDate, cb)=>{
   const userTodos = getTodosByUserId(userId);
   const result = userTodos
   .filter(todo => todo.date === stringDate)
@@ -51,6 +62,33 @@ exports.getThisDaysTodos = (userId, stringDate,cb)=>{
   cb(result);
 }
 
-exports.addThisDaysTodos = (userId, stringDate, cb)=>{
-  //새로운 todos 생성
+//todos 추가하기
+exports.addThisDaysTodos = async (data, cb)=>{
+  const userId = data.user_id || 1;
+  const stringDate = data.date;
+  const todoName = data.todo_name;
+  const description = data.description;
+
+  const newTodo = {
+    todos_id : todos.length + 1,
+    user_id : userId,
+    todo_name : todoName,
+    description : description,
+    date: stringDate,
+    state:false
+  }
+  todos.push(newTodo);
+  await saveToFile(todos, todosPath);
+}
+
+//todos 객체 수정하기
+exports.updateThisDaysTodos = async (data, cb)=>{
+  todos.push(data);
+  await saveToFile(todos, todosPath);
+}
+
+//todos 항목 삭제하기
+exports.deleteThisDaysTodos = async (index, cb) =>{
+  todos = todos.filter(todo => todo.todos_id !== index)
+  saveToFile(todos, todosPath);
 }
