@@ -1,4 +1,18 @@
-<!-- createtodo.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DayTodo</title>
+  <link rel="stylesheet" href="/static/styles/date.css">
+  <link rel="stylesheet" href="/static/styles/nav.css">
+  <link rel="stylesheet" href="/static/styles/mypage.css">
+</head>
+<body>
+  <%- include ('nav.ejs') -%>
+  <!-- nav종료 -->
+  <%- include ('mypage.ejs') -%>
+  <!-- mypage종료 -->
 <div class="container">
     <h2 id="currentDate" class="vision"></h2>
     <div id="scheduleList" class="schedule-list"></div>
@@ -11,3 +25,7 @@
       </form>
     </div>
 </div>
+<script src="/static/js/date.js"></script>
+<script src="/static/js/NAV.js"></script>
+</body>
+</html>

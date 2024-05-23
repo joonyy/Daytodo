@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="../static/styles/nav.css">
     <link rel="stylesheet" href="../static/styles/date.css">
     <link rel="stylesheet" href="../static/styles/mypage.css">
+    <style>
+    </style>
 </head>
 <body>
     <%- include ('nav.ejs') -%>
-    <!-- nav종료 -->    <!-- CreateTodo.ejs 경로연결이안됨 -->
+    <!-- nav종료 -->
     <%- include ('mypage.ejs') -%>
     <!-- mypage종료 -->
-
     <!-- 선택된 달의 달력 표시 -->
     <div class="calendar">
         <div class="calendar-header">
@@ -39,9 +40,10 @@
             <tbody></tbody>
         </table>
     </div>
-    <script src="../static/js/index.js"></script>
-    <script src="../static/js/nav.js"></script>
-    <script src="../static/js/mypage.js"></script>
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/NAV.js"></script>
+    <script src="/static/js/mypage.js"></script>
+    <script src="/static/js/date.js"></script>
     <!-- <script src="../static/js/createtodo.js"></script> -->
 </body>
 </html>
