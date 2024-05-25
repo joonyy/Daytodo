@@ -35,14 +35,13 @@ exports.viewTodo = (req,res)=>{
 }
 
 exports.date = (req,res)=>{
-  userId = 1;
-  const stringDate =req.query;
+  const {userId,date} =req.query;
   console.log(req.query);
-  console.log('exports.date 에서 출력중 : ', stringDate);
+  console.log('exports.date 에서 출력중 : ', date);
 
   //models에서, 해당 날짜의 todos를 가져오기 + 콜백
-  models.getThisDaysTodos(userId, stringDate, result =>{
-    res.render('date',{"stringDate":stringDate, res:result});
+  models.getThisDaysTodos(userId, date, result =>{
+    res.render('date',{"stringDate":date, res:result});
   })
 }
 

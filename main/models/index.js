@@ -36,7 +36,7 @@ const saveToFile = async (data, filePath) =>{
 
 //userId 에 해당하는 todos 테이블을 가져오는 함수
 const getTodosByUserId = (userId) =>{
-  return todos.filter(todo => todo.user_id === userId);  
+  return todos.filter(todo => todo.user_id === userId);
 }
 //월별 Todos : 날짜 중 year과 month와 일치하는 Todos 데이터(튜플) 전송
 const getTodosByMonth = (todos, stringDate) =>{
@@ -57,10 +57,12 @@ const getTodosByMonth = (todos, stringDate) =>{
     };
   });
 }
-//여기부터 시작하면 됩니다.!
+
 const getTodosByDate = (todos, stringDate) =>{
-  return todos.filter(todo =>{
-    return todo.date === stringDate;
+  stringDate = String(stringDate);
+  return todos
+  .filter(todos =>{
+    return todos.date === stringDate;
   });
 }
 
