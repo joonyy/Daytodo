@@ -41,7 +41,7 @@ exports.date = (req,res)=>{
 
   //models에서, 해당 날짜의 todos를 가져오기 + 콜백
   models.getThisDaysTodos(userId, date, result =>{
-    res.render('date',{"stringDate":date, res:result});
+    res.render('date',{"stringDate":date, "res":result});
   })
 }
 

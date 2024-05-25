@@ -3,12 +3,7 @@ const calendar = document.querySelector('.calendar'); // 달력을 감싸는 부
 const header = calendar.querySelector('.calendar-header'); // 달력 헤더
 const grid = calendar.querySelector('.calendar-grid tbody'); // 달력 그리드의 tbody 요소
 const monthYear = header.querySelector('.month-year'); // 연도와 월을 표시하는 요소
-const dateToStringDate = (date) =>{
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+
 // 현재 선택된 날짜 정보를 저장하는 변수들입니다.
 let chosenDate = new Date();
 const stringDate = dateToStringDate(chosenDate);
