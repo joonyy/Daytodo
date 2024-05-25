@@ -12,7 +12,7 @@ function displayCurrentDate() {
   const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
   document.getElementById('currentDate').textContent = formattedDate;
 }
-
+// 현재 날짜 표시 함수 호출	
 displayCurrentDate();
 
 // 일정 추가 폼 열기/닫기 토글
@@ -44,6 +44,8 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
 
     // 체크박스 상태 변경 처리
     checkBox.addEventListener("change", function () {
+      //axios.patch 요청	
+      //추가 할 부분
       if (this.checked) {
         scheduleText.classList.add("completed");
       } else {
