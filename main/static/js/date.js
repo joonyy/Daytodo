@@ -79,19 +79,6 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
     scheduleContent.textContent = eventContent;
     scheduleItem.appendChild(scheduleContent);
 
-    // 수정 버튼 생성 및 이벤트 처리
-    const editButton = document.createElement("button");
-    editButton.textContent = "수정";
-    editButton.className = "edit-button";
-    editButton.addEventListener("click", function () {
-      // 수정 버튼 클릭 시 일정 텍스트 수정
-      const newText = prompt("일정을 수정하세요", scheduleText.textContent);
-      if (newText !== null) {
-        scheduleText.textContent = newText;
-      }
-    });
-    scheduleItem.appendChild(editButton);
-
     // 삭제 버튼 생성 및 이벤트 처리
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "삭제";
