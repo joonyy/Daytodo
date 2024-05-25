@@ -36,6 +36,18 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
   // 기본 제출 동작을 막습니다.
   event.preventDefault();
   
+  // axios 요청.
+  // axios({
+  //   method:"POST",
+  //   url:"/addTodos",
+  //   data:{
+  //     "user_id": 1,//임시
+  //     "date"://url에 params로 적혀있는 놈들
+  //     "todo_name"://입력한 submit 내용
+  //     "description"://입력한 submit 내용
+  //   }
+  // })
+
   // 입력된 이벤트 이름을 가져옵니다.
   const eventName = document.getElementById("eventName").value.trim();
 
@@ -70,6 +82,14 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
     deleteButton.textContent = "삭제";
     deleteButton.className = "delete-button";
     deleteButton.addEventListener("click", function () {
+      //axios.delete 요청
+      //axios.delete('/deleteTodo', {
+      //  data:{
+        // todos_id : ~~~,
+        // user_id : ~~~
+      // }
+      // })
+      
       // 일정 아이템을 삭제합니다.
       scheduleItem.remove();
     });
@@ -80,6 +100,7 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
     editButton.textContent = "수정"; // 수정 버튼 텍스트 설정
     editButton.className = "edit-button"; // 수정 버튼 클래스 설정
     editButton.addEventListener("click", function () { // 수정 버튼 클릭 이벤트 처리
+      
       // 사용자에게 일정을 수정할 수 있도록 요청합니다.
       const newText = prompt("일정을 수정하세요", scheduleText.textContent); // 새 텍스트를 입력하도록 요청
       if (newText !== null) {
