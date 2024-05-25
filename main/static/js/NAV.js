@@ -1,3 +1,17 @@
+    //오늘의 stringDate
+    const today = new Date();
+    const dateToStringDate = (date) =>{
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    const stringTodayDate = dateToStringDate(today);
+
+    //href 속성 설정하기
+      const createTodoLink = document.getElementById('create-todo-link');
+      createTodoLink.href = `/date?userId=1&date=${stringTodayDate}`;
+
     // 로그인 팝업 시작
     document.querySelector('.login').addEventListener('click', function() {
       document.querySelector('.login-popup').style.display = 'block';

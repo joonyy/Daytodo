@@ -3,15 +3,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const nextWeekBtn = document.querySelector('#next-week-btn');
 
   let currentStartDate = new Date();
-  currentStartDate.setHours(0, 0, 0, 0);
-
+  
   while (currentStartDate.getDay() !== 0) {
       currentStartDate.setDate(currentStartDate.getDate() - 1);
   }
 
   const calendarBody = document.querySelector('.calendar-grid tbody');
   const weekDatesRow = document.querySelector('.week-dates');
-
+  
   function renderWeeklyCalendar(startDate) {
       calendarBody.innerHTML = '';
 
@@ -38,7 +37,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
               const month = (currentDay.getMonth() + 1).toString().padStart(2, '0');
               const day = currentDay.getDate().toString().padStart(2, '0');
               const dateString = `${year}-${month}-${day}`;
-              cell.textContent = currentDay.getDate();
+              //cell.textContent에 foreach를 통해 todos를 넣어줄 예정입니다.
+              // cell.textContent = currentDay.getDate();
+              
               cell.setAttribute('data-date', dateString); // "nnnn-nn-nn" 형식으로 날짜 데이터 속성 추가
               
               if (currentDay.toDateString() === today.toDateString()) {
@@ -46,9 +47,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
               }
 
               cell.addEventListener('click', (event) => {
+                  userId = 1;
                   const target = event.target.closest('td');
                   const clickedDate = target.getAttribute('data-date');
-                  window.location.href = `/date?date=${clickedDate}`;
+                  window.location.href = `/date?userId=${userId}&date=${clickedDate}`;
               });
 
               row.appendChild(cell);
