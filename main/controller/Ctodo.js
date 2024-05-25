@@ -1,27 +1,23 @@
 const models = require('../models/index');
 
-const dateToStringDate = (date) =>{
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
 exports.main = (req,res)=>{
   const userId = 1;//임시 ID값
   const date = new Date();
-  const stringDate = dateToStringDate(date);
-  console.log('stringDate는 : ',stringDate);
-  
-  models.getThisMonthTodos(userId, stringDate, result =>{
-    console.log("main에서 실행된 : " , result); //해당월 todos console에 띄우기
+  const year = date.getFullYear;
+  const month = date.getMonth + 1;
+
+  models.getThisMonthTodos(userId, year, month, result =>{
+    console.log(result);
     res.render('index',{res : result});
   })
 }
 
 exports.thisMonth = (req,res)=>{
-  const {userId, date} = req.query;
-  models.getThisMonthTodos(userId, date, result =>{
+  const userId = parseInt(req.query.userId);
+  const year = parseInt(req.query.year);
+  const month = parseInt(req.query.month);
+  models.getThisMonthTodos(userId, year, month, result =>{
+    console.log(result);
     res.send(result);
   })
 }
@@ -35,13 +31,18 @@ exports.viewTodo = (req,res)=>{
 }
 
 exports.date = (req,res)=>{
-  const {userId,date} =req.query;
-  console.log(req.query);
-  console.log('exports.date 에서 출력중 : ', date);
-
+  const userId = 1;//임시 ID값
+  const {year, month, date} =req.query;
+  console.log('exports.date 에서 출력중 : ',year, month, date);
+  const paddedMonth = String(month).padStart(2, '0');
+  const paddedDate = String(date).padStart(2, '0');
+  const stringDate = `${year}-${paddedMonth}-${paddedDate}`;
+  console.log("stringDate는 ",stringDate);
+  
+  
   //models에서, 해당 날짜의 todos를 가져오기 + 콜백
-  models.getThisDaysTodos(userId, date, result =>{
-    res.render('date',{"stringDate":date, res:result});
+  models.getThisDaysTodos(userId, stringDate, result =>{
+    res.render('date',{"year":year,"month":month, "date":date, res:result});
   })
 }
 
@@ -61,6 +62,7 @@ exports.addTodos = (req,res)=>{
 exports.updateTodos = (req,res)=>{
   const data = req.body
   models.updateThisDaysTodos(data,result =>{
+
   })
 }
 

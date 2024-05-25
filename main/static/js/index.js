@@ -3,29 +3,26 @@ const calendar = document.querySelector('.calendar'); // 달력을 감싸는 부
 const header = calendar.querySelector('.calendar-header'); // 달력 헤더
 const grid = calendar.querySelector('.calendar-grid tbody'); // 달력 그리드의 tbody 요소
 const monthYear = header.querySelector('.month-year'); // 연도와 월을 표시하는 요소
-const dateToStringDate = (date) =>{
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
-  const day = String(date.getDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+
 // 현재 선택된 날짜 정보를 저장하는 변수들입니다.
 let chosenDate = new Date();
-const stringDate = dateToStringDate(chosenDate);
 let chosenMonth = chosenDate.getMonth(); // 선택된 달
 let chosenYear = chosenDate.getFullYear(); // 선택된 연도
-
 let firstDate, lastDate, daysInMonth, firstDayOfMonth, lastDayOfMonth, weekCount;
 
 // 선택된 날짜에 해당하는 할 일을 서버에서 가져와 달력에 표시하는 함수입니다.
 const handleChosenDate = () => {
-  userId = 1;
+  const userId = 1;
+  const year = chosenYear;
+  const month = chosenMonth + 1;
+
   axios({
     method: "GET",
     url: "/getThisMonthTodos",
     params: {
       userId: userId,
-      date: stringDate
+      year: year,
+      month: month,
     }
   })
   .then(res => {
@@ -88,14 +85,9 @@ const renderCalendar = () => {
             cell.addEventListener('click', (event) => {
               const target = event.target.closest('td');
               const clickedDate = parseInt(target.getAttribute('data-date'));
-              console.log(clickedDate);
-              //클릭한 날짜에 해당하는 date객체를 만듭니다
-              const tmp = new Date(chosenYear, chosenMonth,clickedDate);
-              const newDate = dateToStringDate(tmp);
-              userId = 1;
-
-              const queryString = `userId=${userId}&date=${newDate}`;
-              window.location.href=`/date?${queryString}`;
+              const formattedDate = `${chosenYear}-${chosenMonth + 1}-${clickedDate < 10 ? '0' + clickedDate : clickedDate}`;
+              const url = `/date?date=${formattedDate}`;
+              window.location.href = url;
             });
             // 오늘 날짜를 강조합니다.
             if (chosenYear === today.getFullYear() && chosenMonth === today.getMonth() && dayIndex === today.getDate()) {
