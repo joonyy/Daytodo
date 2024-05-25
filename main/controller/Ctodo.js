@@ -11,7 +11,6 @@ exports.main = (req,res)=>{
   const userId = 1;//임시 ID값
   const date = new Date();
   const stringDate = dateToStringDate(date);
-  console.log('stringDate는 : ',stringDate);
   
   models.getThisMonthTodos(userId, stringDate, result =>{
     console.log("main에서 실행된 : " , result); //해당월 todos console에 띄우기
