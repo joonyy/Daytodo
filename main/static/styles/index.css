@@ -19,11 +19,13 @@ table {
   left: 0;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   /* 테두리 추가 */
   padding: 5px;
   /* 셀 안쪽 여백 추가 */
+  text-align: center;
 }
 
 td {
@@ -40,6 +42,7 @@ td {
   word-break: break-all; /* 단어를 강제로 줄 바꿈 처리 */
   overflow: hidden;
   white-space: nowrap;
+  
 }
 
 td:hover {
@@ -69,7 +72,8 @@ th {
   text-align: center;
 }
 
-.prev-month, .next-month {
+.prev-month,
+.next-month {
   color: white;
   background-color: black;
   border: 1px solid white;
@@ -88,29 +92,29 @@ th {
   justify-content: center;
 }
 
-/* 모바일 대응을 위한 미디어 쿼리 */
-@media (max-width: 600px) {
-  table {
-      width: 100%;
-  }
+/* 모바일 대응을 위한 미디어 쿼리 */	
+@media (max-width: 600px) {	
+  table {	
+      width: 100%;	
+  }	
 
-  td {
-      width: 50px;
-      height: 50px;
-      font-size: 12px;
-  }
+  td {	
+      width: 50px;	
+      height: 50px;	
+      font-size: 12px;	
+  }	
 
-  th {
-      font-size: 14px;
-  }
+  th {	
+      font-size: 14px;	
+  }	
 
-  .prev-month, .next-month {
-      width: 30px;
-      height: 30px;
-      font-size: 12px;
-  }
+  .prev-month, .next-month {	
+      width: 30px;	
+      height: 30px;	
+      font-size: 12px;	
+  }	
 
-  .btn-container {
-      flex-direction: column;
+  .btn-container {	
+      flex-direction: column;	
   }
 }
