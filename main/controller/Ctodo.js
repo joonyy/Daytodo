@@ -11,7 +11,6 @@ exports.main = (req,res)=>{
   const userId = 1;//임시 ID값
   const date = new Date();
   const stringDate = dateToStringDate(date);
-  console.log('stringDate는 : ',stringDate);
   
   models.getThisMonthTodos(userId, stringDate, result =>{
     console.log("main에서 실행된 : " , result); //해당월 todos console에 띄우기
@@ -49,21 +48,24 @@ exports.date = (req,res)=>{
 exports.addTodos = (req,res)=>{
   const data = req.body;
   //날아온 데이터 형식 : 
-  //{user_id : 1, "date" : stringdate, "todo_name" : string, "description" : string};
+  //{user_id : 1, "date" : stringdate, "todo_name" : string, "description" : string, state:false};
 
   //models페이지에서 db에 data 입력해주는 로직 구현 후 작성하기
-  models.addThisDaysTodos(data, result=>{
-    res.send(result);
-  })
+  models.addThisDaysTodos(data)
 }
 
 //todos 수정하기
 exports.updateTodos = (req,res)=>{
-  const data = req.body
-  models.updateThisDaysTodos(data,result =>{
+  const data = req.body;
+  models.updateThisTodos(data,result =>{
   })
 }
+exports.toggleTodos = (req,res) =>{
+  const data = req.body;
+  models.toggleTodo(data, result =>{
 
+  })
+}
 //todos 삭제하기
 exports.deleteTodos = (req,res)=>{
   //날아오는 data : todo_id 1개

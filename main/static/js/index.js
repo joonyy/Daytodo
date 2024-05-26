@@ -6,7 +6,7 @@ const monthYear = header.querySelector('.month-year'); // 연도와 월을 표�
 
 // 현재 선택된 날짜 정보를 저장하는 변수들입니다.
 let chosenDate = new Date();
-const stringDate = dateToStringDate(chosenDate);
+let stringDate = dateToStringDate(chosenDate);
 let chosenMonth = chosenDate.getMonth(); // 선택된 달
 let chosenYear = chosenDate.getFullYear(); // 선택된 연도
 
@@ -83,7 +83,6 @@ const renderCalendar = () => {
             cell.addEventListener('click', (event) => {
               const target = event.target.closest('td');
               const clickedDate = parseInt(target.getAttribute('data-date'));
-              console.log(clickedDate);
               //클릭한 날짜에 해당하는 date객체를 만듭니다
               const tmp = new Date(chosenYear, chosenMonth,clickedDate);
               const newDate = dateToStringDate(tmp);
@@ -112,6 +111,9 @@ const previousMonth = () => {
     chosenMonth = 11;
     chosenYear--;
   }
+  chosenDate.setMonth(chosenMonth);
+  chosenDate.setFullYear(chosenYear);
+  stringDate = dateToStringDate(chosenDate);
   renderCalendar();
 }
 
@@ -122,6 +124,9 @@ const nextMonth = () => {
     chosenMonth = 0;
     chosenYear++;
   }
+  chosenDate.setMonth(chosenMonth);
+  chosenDate.setFullYear(chosenYear);
+  stringDate = dateToStringDate(chosenDate);
   renderCalendar();
 }
 

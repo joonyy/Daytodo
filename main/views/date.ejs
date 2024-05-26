@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/static/styles/date.css">
   <link rel="stylesheet" href="/static/styles/nav.css">
   <link rel="stylesheet" href="/static/styles/mypage.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <%- include ('nav.ejs') -%>
@@ -16,18 +17,17 @@
 <div class="container">
     <h2 id="currentDate" class="vision"></h2>
     <div id="scheduleList" class="schedule-list"></div>
+    <div id="todoData" class="hide"><%- JSON.stringify(res) %></div>
     <div class="add-schedule-button-container">
       <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
       <br>
       <form id="addScheduleForm" class="hide">
         <input type="text" id="eventName" class="formtext" placeholder="일정을 입력하세요" required>
         <textarea id="eventContent" class="formtext"></textarea>
-        <button type="submit">일정 추가</button>
+        <button class="scheduleBtn" type="submit">일정 추가</button>
       </form>
     </div>
 </div>
-<h1><%= res.todo_name %></h1>
 <script src="/static/js/date.js"></script>
-<script src="/static/js/nav.js"></script>
 </body>
 </html>

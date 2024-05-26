@@ -69,9 +69,11 @@ button:hover {
   color: white;
   border: none;
   cursor: pointer;
-  width: 96%;
+  width: 100%;
 }
-
+.scheduleBtn{
+  width:25%;
+}
 
 .schedule-item span {
   width: 80%;
@@ -79,4 +81,23 @@ button:hover {
 }
 .formtext {
   width: 70%;
+}
+.hide{
+  display: none;
+}
+
+#eventContent{
+  height:200px;
+}
+/* 버튼들을 포함하는 컨테이너 스타일링 */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* 버튼 간격 조정 */
+}
+
+/* 버튼 스타일링 (필요에 따라 추가) */
+.edit-button, .delete-button {
+  margin-left: 10px;
+  width: 90px;
 }
