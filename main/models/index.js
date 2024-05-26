@@ -47,7 +47,6 @@ const getTodosByMonth = (todos, stringDate) =>{
   .filter(todo =>{
     const todoYear = stringDateToIntYear(todo.date);
     const todoMonth = stringDateToIntMonth(todo.date);
-    console.log()
     return todoYear===year && todoMonth===month;
   })
   .map(todo => {

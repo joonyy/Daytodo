@@ -4,6 +4,10 @@ function getSelectedDate() {
   return urlParams.get('date');
 }
 
+function renderTodoInDate(){
+ //이곳에 해당 date의 Todo를 render한다! 
+}
+
 // 현재 날짜 표시
 function displayCurrentDate() {
   const selectedDate = getSelectedDate();
@@ -16,7 +20,7 @@ function displayCurrentDate() {
 displayCurrentDate();
 
 // 일정 추가 폼 열기/닫기 토글
-document.getElementById("toggleAddScheduleForm").addEventListener("click", function () {
+document.getElementById("toggleAddScheduleForm").addEventListener("click", ()=> {
   document.getElementById("addScheduleForm").classList.toggle("hide");
 
   // 폼이 열려 있으면 이벤트 이름 입력란에 포커스 설정
@@ -29,8 +33,7 @@ document.getElementById("toggleAddScheduleForm").addEventListener("click", funct
 document.getElementById("addScheduleForm").addEventListener("submit", function (event) {
   // 기본 제출 동작 막기
   event.preventDefault();
-  
-  // axios 요청.
+
   // axios({
   //   method:"POST",
   //   url:"/addTodos",
@@ -41,8 +44,6 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
   //     "description"://입력한 submit 내용
   //   }
   // })
-
-  // 입력된 이벤트 이름을 가져옵니다.
 
   // 입력된 이벤트 이름 가져오기
   const eventName = document.getElementById("eventName").value.trim();
@@ -77,7 +78,11 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
     // 일정 내용 생성 및 설정 (이벤트 내용)
     const scheduleContent = document.createElement("p");
     scheduleContent.textContent = eventContent;
+    scheduleContent.classList.toggle('hide');
     scheduleItem.appendChild(scheduleContent);
+    
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
 
     // 삭제 버튼 생성 및 이벤트 처리
     const deleteButton = document.createElement("button");
@@ -94,24 +99,23 @@ document.getElementById("addScheduleForm").addEventListener("submit", function (
       
       // 일정 아이템을 삭제합니다.
       // 삭제 버튼 클릭 시 일정 아이템 삭제
-    scheduleItem.remove();
+      scheduleItem.remove();
     });
-    scheduleItem.appendChild(deleteButton);
-
+    buttonContainer.appendChild(deleteButton);
 
     // 수정 버튼을 생성하고 이벤트를 처리합니다.
     const editButton = document.createElement("button"); // 수정 버튼 추가
-    editButton.textContent = "수정"; // 수정 버튼 텍스트 설정
+    editButton.textContent = "수정"; // 수정 버튼 텍스트 설정엇
     editButton.className = "edit-button"; // 수정 버튼 클래스 설정
     editButton.addEventListener("click", function () { // 수정 버튼 클릭 이벤트 처리
-      
       // 사용자에게 일정을 수정할 수 있도록 요청합니다.
       const newText = prompt("일정을 수정하세요", scheduleText.textContent); // 새 텍스트를 입력하도록 요청
       if (newText !== null) {
         scheduleText.textContent = newText; // 일정 텍스트를 업데이트합니다.
       }
     });
-    scheduleItem.appendChild(editButton); // 수정 버튼을 추가합니다.
+    buttonContainer.appendChild(editButton);
+    scheduleItem.appendChild(buttonContainer); // 수정 버튼을 추가합니다.
 
     // 일정 목록에 일정 아이템을 추가합니다.
 
