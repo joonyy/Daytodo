@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/static/styles/date.css">
   <link rel="stylesheet" href="/static/styles/nav.css">
   <link rel="stylesheet" href="/static/styles/mypage.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <%- include ('nav.ejs') -%>
@@ -16,6 +17,7 @@
 <div class="container">
     <h2 id="currentDate" class="vision"></h2>
     <div id="scheduleList" class="schedule-list"></div>
+    <div id="todoData" class="hide"><%- JSON.stringify(res) %></div>
     <div class="add-schedule-button-container">
       <button class="add-schedule-button" id="toggleAddScheduleForm">+</button>
       <br>

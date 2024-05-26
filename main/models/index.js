@@ -27,7 +27,7 @@ const stringDateToIntYear = (stringDate) =>{
 // 데이터베이스(.json파일)에 저장하는 함수
 const saveToFile = async (data, filePath) =>{
   try{
-    await fs.writeFile(filePath, JSON.stringify(data,null,2));
+    await fs.promises.writeFile(filePath, JSON.stringify(data,null,2));
   }catch(err){
     console.error('파일을 쓰다가 오류가 생겼습니다 : ', err);
     throw err;
@@ -58,11 +58,16 @@ const getTodosByMonth = (todos, stringDate) =>{
   });
 }
 
+//id를 통해 todo를 받아오는 함수
+const getTodosById = (todo_id) =>{
+  return todos.find(todo => todo.todos_id === todo_id);
+}
+
 const getTodosByDate = (todos, stringDate) =>{
   stringDate = String(stringDate);
   return todos
-  .filter(todos =>{
-    return todos.date === stringDate;
+  .filter(todo =>{
+    return todo.date === stringDate;
   });
 }
 
@@ -86,7 +91,7 @@ exports.getThisDaysTodos = (userId, stringDate, cb)=>{
 }
 
 //todos 추가하기
-exports.addThisDaysTodos = async (data, cb)=>{
+exports.addThisDaysTodos = async (data)=>{
   const userId = data.user_id || 1;
   const stringDate = data.date;
   const todoName = data.todo_name;
@@ -105,9 +110,16 @@ exports.addThisDaysTodos = async (data, cb)=>{
 }
 
 //todos 객체 수정하기
-exports.updateThisDaysTodos = async (data, cb)=>{
+exports.updateThisTodos = async (data)=>{
+  //해당 일의 data를 수정하기.
   todos.push(data);
   await saveToFile(todos, todosPath);
+}
+
+//todos 객체 완료여부
+exports.toggleTodo = async (data, cb) =>{
+  const newTodo = getTodosById(todos, data.id);
+  //여기에 todo_id를 통해 todo를 가져오고, 수정하여, 다시 넣어주는 로직을 구현할 예정.
 }
 
 //todos 항목 삭제하기

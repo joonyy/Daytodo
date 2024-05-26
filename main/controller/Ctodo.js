@@ -51,18 +51,21 @@ exports.addTodos = (req,res)=>{
   //{user_id : 1, "date" : stringdate, "todo_name" : string, "description" : string, state:false};
 
   //models페이지에서 db에 data 입력해주는 로직 구현 후 작성하기
-  models.addThisDaysTodos(data, result=>{
-    res.send(result);
-  })
+  models.addThisDaysTodos(data)
 }
 
 //todos 수정하기
 exports.updateTodos = (req,res)=>{
-  const data = req.body
-  models.updateThisDaysTodos(data,result =>{
+  const data = req.body;
+  models.updateThisTodos(data,result =>{
   })
 }
+exports.toggleTodos = (req,res) =>{
+  const data = req.body;
+  models.toggleTodo(data, result =>{
 
+  })
+}
 //todos 삭제하기
 exports.deleteTodos = (req,res)=>{
   //날아오는 data : todo_id 1개
