@@ -7,3 +7,9 @@
 ###node.js###
 node_modules
 package-lock.json
+
+###배포###
+*.pem
+Todos.json
+Users.json
+Tags.json
