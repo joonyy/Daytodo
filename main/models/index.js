@@ -5,9 +5,9 @@ const usersPath = path.join(__dirname, 'Users.json');
 const tagsPath = path.join(__dirname, 'Tags.json');
 const todosPath = path.join(__dirname, 'Todos.json');
 
-const users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
-const tags = JSON.parse(fs.readFileSync(tagsPath, 'utf8'));
-const todos = JSON.parse(fs.readFileSync(todosPath, 'utf8'));
+let users = JSON.parse(fs.readFileSync(usersPath, 'utf8'));
+let tags = JSON.parse(fs.readFileSync(tagsPath, 'utf8'));
+let todos = JSON.parse(fs.readFileSync(todosPath, 'utf8'));
 
 //stringDate에서 date를 추출하는 함수
 const stringDateToIntDate = (stringDate) =>{
@@ -26,12 +26,8 @@ const stringDateToIntYear = (stringDate) =>{
 
 // 데이터베이스(.json파일)에 저장하는 함수
 const saveToFile = async (data, filePath) =>{
-  try{
     await fs.promises.writeFile(filePath, JSON.stringify(data,null,2));
-  }catch(err){
-    console.error('파일을 쓰다가 오류가 생겼습니다 : ', err);
-    throw err;
-  }
+    console.log(`성공적으로 data를 ${filePath}에 저장했습니다.`)
 };
 
 //userId 에 해당하는 todos 테이블을 가져오는 함수
@@ -92,6 +88,7 @@ exports.getThisDaysTodos = (userId, stringDate, cb)=>{
 
 //todos 추가하기
 exports.addThisDaysTodos = async (data)=>{
+  try{
   const userId = data.user_id || 1;
   const stringDate = data.date;
   const todoName = data.todo_name;
@@ -107,6 +104,11 @@ exports.addThisDaysTodos = async (data)=>{
   }
   todos.push(newTodo);
   await saveToFile(todos, todosPath);
+  return newTodo;
+}catch (error) {
+  console.error("Error adding todo:", error);
+  throw error;
+  }
 }
 
 //todos 객체 수정하기
@@ -117,13 +119,19 @@ exports.updateThisTodos = async (data)=>{
 }
 
 //todos 객체 완료여부
-exports.toggleTodo = async (data, cb) =>{
-  const newTodo = getTodosById(todos, data.id);
-  //여기에 todo_id를 통해 todo를 가져오고, 수정하여, 다시 넣어주는 로직을 구현할 예정.
-}
+exports.toggleTodo = async (data, cb) => {
+  const todo = getTodosById(data.todo_id);
+  if (todo) {
+    todo.state = data.state;
+    await saveToFile(todos, todosPath);
+    cb(true);
+  } else {
+    cb(false);
+  }
+};
 
 //todos 항목 삭제하기
-exports.deleteThisDaysTodos = async (index, cb) =>{
-  todos = todos.filter(todo => todo.todos_id !== index)
+exports.deleteThisDaysTodos = (todo_id) => {
+  todos = todos.filter(todo => todo.todos_id !== todo_id);
   saveToFile(todos, todosPath);
-}
+};
